@@ -1,0 +1,122 @@
+# InkTheory - Premium Streetwear Platform
+
+Next.js storefront for print-on-demand streetwear with Quikink fulfillment, PayPal checkout, account orders, coupons, cart, wishlist, admin tools, and email notifications.
+
+## Setup
+
+```bash
+npm install
+cp .env.example .env.local
+npm run db:push
+npm run db:seed
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Required Credentials
+
+Add these to `.env.local` before testing full checkout and fulfillment:
+
+```bash
+DATABASE_URL=""
+DIRECT_URL=""
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET=""
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+NEXT_PUBLIC_GOOGLE_AUTH_ENABLED="false"
+
+PAYPAL_ENVIRONMENT="sandbox"
+PAYPAL_CLIENT_ID=""
+PAYPAL_CLIENT_SECRET=""
+PAYPAL_CURRENCY="INR"
+NEXT_PUBLIC_PAYPAL_CLIENT_ID=""
+NEXT_PUBLIC_PAYPAL_CURRENCY="INR"
+
+QUIKINK_ENVIRONMENT="sandbox"
+QUIKINK_API_KEY=""
+QUIKINK_CLIENT_ID=""
+QUIKINK_CLIENT_SECRET=""
+QUIKINK_API_URL=""
+QUIKINK_SANDBOX_API_URL=""
+QUIKINK_WEBHOOK_SECRET=""
+
+RESEND_API_KEY=""
+SMTP_HOST=""
+SMTP_PORT="587"
+SMTP_USER=""
+SMTP_PASS=""
+EMAIL_FROM="InkTheory <noreply@inktheory.in>"
+CONTACT_TO_EMAIL="support@inktheory.in"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+NEXT_PUBLIC_APP_NAME="InkTheory"
+```
+
+Test Quikink and PayPal with sandbox credentials first. After successful sandbox orders, switch `QUIKINK_ENVIRONMENT` and `PAYPAL_ENVIRONMENT` to `live`, then replace the sandbox keys with live credentials.
+
+## Vercel Deployment
+
+1. Push this folder to GitHub.
+2. Import the repository into Vercel as a Next.js project.
+3. Add every value from `.env.local` into Vercel Project Settings > Environment Variables.
+4. Set `NEXTAUTH_URL` and `NEXT_PUBLIC_APP_URL` to your production URL.
+5. Add this Google OAuth redirect URI in Google Cloud:
+
+```text
+https://your-domain.vercel.app/api/auth/callback/google
+```
+
+6. Verify your sending domain in Resend before replacing `onboarding@resend.dev`.
+7. Run `npx prisma db push` once for the production database if the schema is not already synced.
+
+Secrets are ignored by `.gitignore`; do not commit `.env` or `.env.local`.
+
+## Payment Flow
+
+```text
+User adds items -> Cart -> Checkout
+-> POST /api/checkout/paypal/create-order
+-> PayPal checkout button opens
+-> User pays with PayPal, card, or UPI if enabled on the PayPal account
+-> POST /api/checkout/paypal/capture
+-> Order marked PAID
+-> submitOrderToQuikink() runs asynchronously
+-> Confirmation email is sent
+```
+
+## Fulfillment Flow
+
+```text
+Order paid
+-> submitOrderToQuikink() sends order to Quikink
+-> Quikink processes and prints
+-> Quikink webhook POSTs to /api/webhooks/quikink
+-> Order status and tracking update in the account/admin views
+```
+
+## Useful Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
+npm run db:push
+npm run db:migrate
+npm run db:studio
+npm run db:seed
+```
+
+## Seed Admin
+
+```text
+Email: admin@inktheory.in
+Password: admin@InkTheory123
+```
+
+Sample coupons:
+
+```text
+InkTheory10 - 10% off above INR 1000
+FIRST200 - INR 200 off above INR 1500
+```

@@ -1,0 +1,126 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cursor-size: 12px;
+    --cursor-border: 36px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @media (pointer: fine) {
+    * {
+      cursor: none;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F5F0E8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C8A951;
+    border-radius: 3px;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid #C8A951;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-ink text-cream px-8 py-3.5 text-sm tracking-widest uppercase
+           font-body font-medium transition-all duration-300
+           hover:bg-charcoal active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply border border-ink text-ink px-8 py-3.5 text-sm tracking-widest uppercase
+           font-body font-medium transition-all duration-300
+           hover:bg-ink hover:text-cream active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-ink px-8 py-3.5 text-sm tracking-widest uppercase
+           font-body font-medium transition-all duration-300
+           hover:bg-accent-dark active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full bg-white border border-mist/40 text-ink placeholder:text-mist
+           px-4 py-3 text-sm font-body
+           focus:outline-none focus:border-ink focus:ring-0
+           transition-colors duration-200;
+  }
+
+  .section-label {
+    @apply text-xs tracking-[4px] uppercase text-smoke font-mono;
+  }
+
+  .display-heading {
+    @apply font-display text-ink leading-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain-overlay::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+  }
+
+  .product-image-hover {
+    @apply overflow-hidden;
+  }
+
+  .product-image-hover img {
+    @apply transition-transform duration-700 ease-out;
+  }
+
+  .product-image-hover:hover img {
+    @apply scale-105;
+  }
+
+  /* Marquee */
+  .marquee-inner {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
