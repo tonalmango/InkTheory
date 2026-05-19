@@ -17,7 +17,7 @@ export default async function OrdersPage() {
     where: { userId: session.user.id },
     include: {
       items: { take: 3 },
-      quikink: { select: { status: true, trackingNumber: true, trackingUrl: true } },
+      printrove: { select: { status: true, trackingNumber: true, trackingUrl: true } },
     },
     orderBy: { createdAt: 'desc' },
   })
@@ -67,10 +67,10 @@ export default async function OrdersPage() {
                     <p className="text-xs text-smoke">{formatDate(order.createdAt)}</p>
 
                     {/* Tracking */}
-                    {order.quikink?.trackingNumber && (
+                    {order.printrove?.trackingNumber && (
                       <p className="text-xs text-smoke mt-1">
                         Tracking:{' '}
-                        <span className="font-mono text-ink">{order.quikink.trackingNumber}</span>
+                        <span className="font-mono text-ink">{order.printrove.trackingNumber}</span>
                       </p>
                     )}
 

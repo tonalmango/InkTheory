@@ -8,19 +8,18 @@ import { useRouter } from 'next/navigation'
 interface Props {
   orderId: string
   currentStatus: string
-  hasQuikink: boolean
+  hasPrintrove: boolean
 }
 
-export function AdminOrderActions({ orderId, currentStatus, hasQuikink }: Props) {
+export function AdminOrderActions({ orderId, currentStatus, hasPrintrove }: Props) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const resubmitToQuikink = async () => {
+  const resubmitToPrintrove = async () => {
     setLoading(true)
     try {
-      const { submitOrderToQuikink } = await import('@/lib/quikink/sync')
       await fetch(`/api/admin/orders/${orderId}/resubmit`, { method: 'POST' })
-      toast.success('Resubmitted to Quikink')
+      toast.success('Resubmitted to Printrove')
       router.refresh()
     } catch {
       toast.error('Failed to resubmit')
@@ -48,11 +47,11 @@ export function AdminOrderActions({ orderId, currentStatus, hasQuikink }: Props)
 
   return (
     <div className="flex items-center gap-1">
-      {!hasQuikink && currentStatus !== 'CANCELLED' && (
+      {!hasPrintrove && currentStatus !== 'CANCELLED' && (
         <button
-          onClick={resubmitToQuikink}
+          onClick={resubmitToPrintrove}
           disabled={loading}
-          title="Submit to Quikink"
+          title="Submit to Printrove"
           className="p-1.5 text-smoke hover:text-ink transition-colors border border-ink/10 hover:border-ink/30"
         >
           <RefreshCw size={12} className={loading ? 'animate-spin' : ''} />

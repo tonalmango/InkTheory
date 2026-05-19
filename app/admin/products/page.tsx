@@ -34,9 +34,9 @@ export default async function AdminProductsPage() {
             </div>
             <h1 className="display-heading text-3xl">Products ({products.length})</h1>
           </div>
-          <form action="/api/quikink/sync" method="POST">
+          <form action="/api/printrove/sync" method="POST">
             <button type="submit" className="flex items-center gap-2 btn-primary text-xs py-2.5">
-              <RefreshCw size={13} /> Sync from Quikink
+              <RefreshCw size={13} /> Sync from Printrove
             </button>
           </form>
         </div>
@@ -68,8 +68,8 @@ export default async function AdminProductsPage() {
                           className="text-xs font-medium hover:text-accent transition-colors line-clamp-2 max-w-[180px]">
                           {product.name}
                         </Link>
-                        {product.quikinkId && (
-                          <p className="text-[10px] font-mono text-mist">QK: {product.quikinkId.slice(0, 8)}</p>
+                        {product.printroveId && (
+                          <p className="text-[10px] font-mono text-mist">PR: {product.printroveId.slice(0, 8)}</p>
                         )}
                       </div>
                     </div>

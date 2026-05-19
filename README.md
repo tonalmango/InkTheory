@@ -1,6 +1,6 @@
 # InkTheory - Premium Streetwear Platform
 
-Next.js storefront for print-on-demand streetwear with Quikink fulfillment, PayPal checkout, account orders, coupons, cart, wishlist, admin tools, and email notifications.
+Next.js storefront for print-on-demand streetwear with Printrove fulfillment, PayPal checkout, account orders, coupons, cart, wishlist, admin tools, and email notifications.
 
 ## Setup
 
@@ -34,13 +34,20 @@ PAYPAL_CURRENCY="INR"
 NEXT_PUBLIC_PAYPAL_CLIENT_ID=""
 NEXT_PUBLIC_PAYPAL_CURRENCY="INR"
 
-QUIKINK_ENVIRONMENT="sandbox"
-QUIKINK_API_KEY=""
-QUIKINK_CLIENT_ID=""
-QUIKINK_CLIENT_SECRET=""
-QUIKINK_API_URL=""
-QUIKINK_SANDBOX_API_URL=""
-QUIKINK_WEBHOOK_SECRET=""
+PRINTROVE_API_URL="https://api.printrove.com"
+PRINTROVE_EMAIL=""
+PRINTROVE_PASSWORD=""
+PRINTROVE_SYNC_SOURCE="product-library"
+PRINTROVE_SYNC_CATEGORY_IDS=""
+PRINTROVE_DEFAULT_FRONT_DESIGN_ID=""
+PRINTROVE_DEFAULT_BACK_DESIGN_ID=""
+PRINTROVE_DESIGN_WIDTH="3000"
+PRINTROVE_DESIGN_HEIGHT="3000"
+PRINTROVE_DESIGN_TOP="10"
+PRINTROVE_DESIGN_LEFT="50"
+PRINTROVE_DEFAULT_COURIER_ID=""
+PRINTROVE_COD="false"
+PRINTROVE_WEBHOOK_SECRET=""
 
 RESEND_API_KEY=""
 SMTP_HOST=""
@@ -53,7 +60,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 NEXT_PUBLIC_APP_NAME="InkTheory"
 ```
 
-Test Quikink and PayPal with sandbox credentials first. After successful sandbox orders, switch `QUIKINK_ENVIRONMENT` and `PAYPAL_ENVIRONMENT` to `live`, then replace the sandbox keys with live credentials.
+Set `PRINTROVE_EMAIL` and `PRINTROVE_PASSWORD` to your Printrove merchant credentials. The app uses Printrove's Authentication API (`POST /api/external/token`) to generate the bearer token automatically. Keep `PRINTROVE_SYNC_SOURCE` as `product-library` when you create designed products inside Printrove. Use `catalog` only if you want this app to combine catalog products with global design IDs from Printrove's Design Library API.
 
 ## Vercel Deployment
 
@@ -81,7 +88,7 @@ User adds items -> Cart -> Checkout
 -> User pays with PayPal, card, or UPI if enabled on the PayPal account
 -> POST /api/checkout/paypal/capture
 -> Order marked PAID
--> submitOrderToQuikink() runs asynchronously
+-> submitOrderToPrintrove() runs asynchronously
 -> Confirmation email is sent
 ```
 
@@ -89,9 +96,9 @@ User adds items -> Cart -> Checkout
 
 ```text
 Order paid
--> submitOrderToQuikink() sends order to Quikink
--> Quikink processes and prints
--> Quikink webhook POSTs to /api/webhooks/quikink
+-> submitOrderToPrintrove() sends order to Printrove
+-> Printrove processes and prints
+-> Printrove webhook POSTs to /api/webhooks/printrove
 -> Order status and tracking update in the account/admin views
 ```
 

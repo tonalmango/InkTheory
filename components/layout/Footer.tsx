@@ -22,7 +22,7 @@ export function Footer() {
             <h2 className="font-display text-4xl tracking-[6px] mb-4">InkTheory</h2>
             <p className="text-cream/50 text-sm leading-relaxed max-w-xs">
               Premium print-on-demand streetwear crafted for those who wear their identity.
-              Ships across India via Quikink.
+              Ships across India via Printrove.
             </p>
             <div className="flex gap-4 mt-6">
               <a href="#" className="text-cream/40 hover:text-accent transition-colors" aria-label="Instagram">
@@ -82,7 +82,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-2 text-cream/20 text-xs font-mono">
             <span>Powered by</span>
-            <span className="text-cream/40">Quikink × PayPal</span>
+            <span className="text-cream/40">Printrove × PayPal</span>
           </div>
         </div>
       </div>

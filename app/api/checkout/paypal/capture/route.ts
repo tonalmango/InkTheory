@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
 import { capturePayPalOrder } from '@/lib/payments/paypal'
-import { submitOrderToQuikink } from '@/lib/quikink/sync'
+import { submitOrderToPrintrove } from '@/lib/printrove/sync'
 import { sendOrderConfirmationEmail } from '@/lib/email/mailer'
 
 export async function POST(req: NextRequest) {
@@ -52,8 +52,8 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    submitOrderToQuikink(orderId).catch((err) => {
-      console.error('[Quikink Submit Error]', err)
+    submitOrderToPrintrove(orderId).catch((err) => {
+      console.error('[Printrove Submit Error]', err)
     })
 
     if (order.user.email) {

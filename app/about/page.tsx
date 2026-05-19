@@ -34,7 +34,7 @@ export default function AboutPage() {
               a statement of identity, not just fabric.
             </p>
             <p className="text-smoke leading-relaxed">
-              Partnering with Quikink's print-on-demand infrastructure, we made it possible to offer
+              Partnering with Printrove's print-on-demand infrastructure, we made it possible to offer
               hundreds of designs without holding inventory. Every piece is printed fresh when you
               order it — zero waste, 100% quality.
             </p>

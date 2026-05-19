@@ -29,7 +29,7 @@ export default async function AdminOrdersPage({
       include: {
         user: { select: { name: true, email: true } },
         address: { select: { city: true, state: true, pincode: true } },
-        quikink: { select: { status: true, quikinkOrderId: true, trackingNumber: true } },
+        printrove: { select: { status: true, printroveOrderId: true, trackingNumber: true } },
         _count: { select: { items: true } },
       },
       orderBy: { createdAt: 'desc' },
@@ -70,7 +70,7 @@ export default async function AdminOrdersPage({
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-ink/10 text-left">
-                {['Order', 'Customer', 'Date', 'Items', 'Total', 'Status', 'Quikink', 'Actions'].map((h) => (
+                {['Order', 'Customer', 'Date', 'Items', 'Total', 'Status', 'Printrove', 'Actions'].map((h) => (
                   <th key={h} className="pb-3 pr-4 text-xs font-mono text-smoke tracking-widest uppercase whitespace-nowrap">
                     {h}
                   </th>
@@ -102,15 +102,15 @@ export default async function AdminOrdersPage({
                   </td>
                   <td className="py-3 pr-4">
                     <div className="text-xs">
-                      <p className="font-mono text-smoke">{order.quikink?.status || '—'}</p>
-                      {order.quikink?.trackingNumber && (
-                        <p className="text-ink font-mono">{order.quikink.trackingNumber}</p>
+                      <p className="font-mono text-smoke">{order.printrove?.status || '—'}</p>
+                      {order.printrove?.trackingNumber && (
+                        <p className="text-ink font-mono">{order.printrove.trackingNumber}</p>
                       )}
                     </div>
                   </td>
                   <td className="py-3 pr-4">
                     <AdminOrderActions orderId={order.id} currentStatus={order.status}
-                      hasQuikink={!!order.quikink?.quikinkOrderId} />
+                      hasPrintrove={!!order.printrove?.printroveOrderId} />
                   </td>
                 </tr>
               ))}

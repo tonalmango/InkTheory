@@ -25,7 +25,7 @@ export default async function AdminPage() {
       include: {
         user: { select: { name: true, email: true } },
         items: { take: 1 },
-        quikink: { select: { status: true } },
+        printrove: { select: { status: true } },
       },
       orderBy: { createdAt: 'desc' },
       take: 10,
@@ -52,12 +52,12 @@ export default async function AdminPage() {
             <p className="section-label mb-2">Admin</p>
             <h1 className="display-heading text-3xl md:text-4xl">Dashboard</h1>
           </div>
-          <form action="/api/quikink/sync" method="POST">
+          <form action="/api/printrove/sync" method="POST">
             <button
               type="submit"
               className="flex items-center gap-2 btn-secondary text-xs py-2.5"
             >
-              <RefreshCw size={13} /> Sync Quikink
+              <RefreshCw size={13} /> Sync Printrove
             </button>
           </form>
         </div>
@@ -128,7 +128,7 @@ export default async function AdminPage() {
                     </td>
                     <td className="py-3 pr-4">
                       <span className="text-xs font-mono text-smoke">
-                        {order.quikink?.status || 'Not submitted'}
+                        {order.printrove?.status || 'Not submitted'}
                       </span>
                     </td>
                   </tr>

@@ -1,6 +1,6 @@
-// app/api/quikink/sync/route.ts
+// app/api/printrove/sync/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { syncQuikinkProducts } from '@/lib/quikink/sync'
+import { syncPrintroveProducts } from '@/lib/printrove/sync'
 import { auth } from '@/auth'
 
 export async function POST(req: NextRequest) {
@@ -11,14 +11,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const result = await syncQuikinkProducts()
+    const result = await syncPrintroveProducts()
     return NextResponse.json({
       success: true,
       message: `Synced ${result.synced} of ${result.total} products`,
       ...result,
     })
   } catch (err: any) {
-    console.error('[Quikink Sync Error]', err)
+    console.error('[Printrove Sync Error]', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

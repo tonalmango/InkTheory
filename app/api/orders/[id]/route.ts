@@ -16,7 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     include: {
       items: true,
       address: true,
-      quikink: true,
+      printrove: true,
       coupon: { select: { code: true, type: true, value: true } },
       user: { select: { name: true, email: true } },
     },
@@ -50,14 +50,14 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       data: { status: 'CANCELLED' },
     })
 
-    // Try to cancel in Quikink if submitted
+    // Try to cancel in Printrove if submitted
     if (order.id) {
-      const tracking = await prisma.quikinkOrderTracking.findUnique({
+      const tracking = await prisma.printroveOrderTracking.findUnique({
         where: { orderId: order.id },
       })
-      if (tracking?.quikinkOrderId) {
-        const { quikinkClient } = await import('@/lib/quikink/client')
-        quikinkClient.cancelOrder(tracking.quikinkOrderId, reason || 'Customer request').catch(console.error)
+      if (tracking?.printroveOrderId) {
+        const { printroveClient } = await import('@/lib/printrove/client')
+        printroveClient.cancelOrder(tracking.printroveOrderId, reason || 'Customer request').catch(console.error)
       }
     }
 

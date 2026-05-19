@@ -1,21 +1,21 @@
-// app/api/webhooks/quikink/route.ts
+// app/api/webhooks/printrove/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import crypto from 'crypto'
 import { sendShippingEmail } from '@/lib/email/mailer'
 
-function verifyQuikinkSignature(payload: string, signature: string): boolean {
-  const secret = process.env.QUIKINK_WEBHOOK_SECRET || ''
+function verifyPrintroveSignature(payload: string, signature: string): boolean {
+  const secret = process.env.PRINTROVE_WEBHOOK_SECRET || ''
   const expected = crypto.createHmac('sha256', secret).update(payload).digest('hex')
-  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))
+  return signature.length === expected.length && crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))
 }
 
 export async function POST(req: NextRequest) {
   const rawBody = await req.text()
-  const signature = req.headers.get('x-quikink-signature') || ''
+  const signature = req.headers.get('x-printrove-signature') || ''
 
   // Verify webhook signature
-  if (process.env.QUIKINK_WEBHOOK_SECRET && !verifyQuikinkSignature(rawBody, signature)) {
+  if (process.env.PRINTROVE_WEBHOOK_SECRET && !verifyPrintroveSignature(rawBody, signature)) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
 
@@ -26,16 +26,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
   }
 
-  const { event, data } = payload
-  const quikinkOrderId = data?.orderId || data?.id
+  const { event, data = payload } = payload
+  const printroveOrderId = String(data?.order_id || data?.orderId || data?.id || '')
 
-  if (!quikinkOrderId) {
+  if (!printroveOrderId) {
     return NextResponse.json({ error: 'Missing order ID' }, { status: 400 })
   }
 
   try {
-    const tracking = await prisma.quikinkOrderTracking.findUnique({
-      where: { quikinkOrderId },
+    const tracking = await prisma.printroveOrderTracking.findUnique({
+      where: { printroveOrderId },
       include: {
         order: {
           include: { user: true },
@@ -50,24 +50,32 @@ export async function POST(req: NextRequest) {
     // Append webhook payload to history
     const updatedPayloads = [...(tracking.webhookPayloads as any[]), { event, data, receivedAt: new Date() }]
 
-    // Map Quikink status to our OrderStatus
+    // Map Printrove status to our OrderStatus
     const statusMap: Record<string, string> = {
       'order.accepted': 'CONFIRMED',
+      'order.confirmed': 'CONFIRMED',
       'order.processing': 'PROCESSING',
       'order.shipped': 'SHIPPED',
       'order.delivered': 'DELIVERED',
       'order.cancelled': 'CANCELLED',
+      confirmed: 'CONFIRMED',
+      processing: 'PROCESSING',
+      shipped: 'SHIPPED',
+      delivered: 'DELIVERED',
+      cancelled: 'CANCELLED',
     }
 
-    const newOrderStatus = statusMap[event]
+    const eventName = event || String(data.status || '').toLowerCase()
+    const newOrderStatus = statusMap[eventName]
+    const trackingNumber = data.tracking_number || data.trackingNumber
 
     // Update tracking record
-    await prisma.quikinkOrderTracking.update({
-      where: { quikinkOrderId },
+    await prisma.printroveOrderTracking.update({
+      where: { printroveOrderId },
       data: {
-        status: data.status || tracking.status,
-        trackingNumber: data.trackingNumber || tracking.trackingNumber,
-        trackingUrl: data.trackingUrl || tracking.trackingUrl,
+        status: data.status || eventName || tracking.status,
+        trackingNumber: trackingNumber || tracking.trackingNumber,
+        trackingUrl: data.tracking_url || data.trackingUrl || tracking.trackingUrl,
         carrier: data.carrier || tracking.carrier,
         webhookPayloads: updatedPayloads,
         updatedAt: new Date(),
@@ -83,19 +91,19 @@ export async function POST(req: NextRequest) {
     }
 
     // Send shipping email
-    if (event === 'order.shipped' && data.trackingNumber && tracking.order.user.email) {
+    if (newOrderStatus === 'SHIPPED' && trackingNumber && tracking.order.user.email) {
       await sendShippingEmail(
         tracking.order.user.email,
         tracking.orderId.slice(-8).toUpperCase(),
-        data.trackingNumber,
-        data.trackingUrl || '#',
+        trackingNumber,
+        data.tracking_url || data.trackingUrl || '#',
         data.carrier || 'Partner Courier'
       )
     }
 
     return NextResponse.json({ received: true })
   } catch (err: any) {
-    console.error('[Quikink Webhook Error]', err)
+    console.error('[Printrove Webhook Error]', err)
     return NextResponse.json({ error: 'Internal error' }, { status: 500 })
   }
 }

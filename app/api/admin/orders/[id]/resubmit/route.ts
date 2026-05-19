@@ -1,7 +1,7 @@
 // app/api/admin/orders/[id]/resubmit/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
-import { submitOrderToQuikink } from '@/lib/quikink/sync'
+import { submitOrderToPrintrove } from '@/lib/printrove/sync'
 
 export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await auth()
@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   }
 
   try {
-    await submitOrderToQuikink(params.id)
+    await submitOrderToPrintrove(params.id)
     return NextResponse.json({ success: true })
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 })

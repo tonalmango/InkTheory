@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: 'Are products printed after I order?',
-    a: 'Yes. InkTheory uses print-on-demand fulfillment through Quikink, which helps keep drops fresh and avoids unnecessary inventory waste.',
+    a: 'Yes. InkTheory uses print-on-demand fulfillment through Printrove, which helps keep drops fresh and avoids unnecessary inventory waste.',
   },
   {
     q: 'Can I return or exchange a size?',

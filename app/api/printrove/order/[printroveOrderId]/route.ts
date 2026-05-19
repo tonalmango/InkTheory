@@ -1,12 +1,12 @@
-// app/api/quikink/order/[quikinkOrderId]/route.ts
+// app/api/printrove/order/[printroveOrderId]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
-import { quikinkClient } from '@/lib/quikink/client'
+import { printroveClient } from '@/lib/printrove/client'
 import { prisma } from '@/lib/prisma'
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { quikinkOrderId: string } }
+  { params }: { params: { printroveOrderId: string } }
 ) {
   const session = await auth()
   if (!session || session.user.role !== 'ADMIN') {
@@ -14,11 +14,11 @@ export async function GET(
   }
 
   try {
-    const status = await quikinkClient.getOrderStatus(params.quikinkOrderId)
+    const status = await printroveClient.getOrderStatus(params.printroveOrderId)
 
     // Sync latest status to DB
-    await prisma.quikinkOrderTracking.update({
-      where: { quikinkOrderId: params.quikinkOrderId },
+    await prisma.printroveOrderTracking.update({
+      where: { printroveOrderId: params.printroveOrderId },
       data: {
         status: status.status,
         trackingNumber: status.trackingNumber || undefined,
