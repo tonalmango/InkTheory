@@ -12,7 +12,7 @@ export async function middleware(req: NextRequest) {
     secret: authSecret 
   })
 
-  const isAuthenticated = !!(token && token.id)
+  const isAuthenticated = !!token
 
   const protectedPaths = ['/account', '/checkout', '/wishlist']
   const isProtected = protectedPaths.some((path) => pathname.startsWith(path))

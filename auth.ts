@@ -105,6 +105,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.email = user.email
       }
 
+      // OAuth tokens always have sub; use it as id fallback for consistency.
+      if (!token.id && token.sub) {
+        token.id = token.sub
+      }
+
       // On subsequent requests, ensure token has ID
       if (!token.id && token.email) {
         const dbUser = await prisma.user.findUnique({
@@ -112,6 +117,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         })
         if (dbUser) {
           token.id = dbUser.id
+          token.sub = dbUser.id
         }
       }
 
@@ -127,8 +133,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token
     },
     async session({ session, token }) {
-      if (session.user && token?.id) {
-        session.user.id = token.id as string
+      const userId = (token?.id as string) || (token?.sub as string)
+      if (session.user && userId) {
+        session.user.id = userId
         session.user.role = (token.role as string) || 'USER'
       }
       return session
