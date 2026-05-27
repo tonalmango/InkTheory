@@ -1,4 +1,3 @@
-// auth.ts (root level)
 import NextAuth from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import Google from 'next-auth/providers/google'
@@ -19,15 +18,6 @@ const providers = [
         Google({
           clientId: process.env.GOOGLE_CLIENT_ID,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          allowDangerousEmailAccountLinking: true,
-          profile: async (profile) => {
-            return {
-              id: profile.sub,
-              name: profile.name,
-              email: profile.email,
-              image: profile.picture,
-            }
-          },
         }),
       ]
     : []),
@@ -46,6 +36,7 @@ const providers = [
 
       const user = await prisma.user.findUnique({
         where: { email: parsed.data.email.toLowerCase() },
+        select: { id: true, email: true, name: true, image: true, password: true, role: true },
       })
 
       if (!user || !user.password) return null
@@ -53,7 +44,7 @@ const providers = [
       const isValid = await bcrypt.compare(parsed.data.password, user.password)
       if (!isValid) return null
 
-      return { id: user.id, email: user.email, name: user.name, image: user.image }
+      return { id: user.id, email: user.email, name: user.name, image: user.image, role: user.role }
     },
   }),
 ]
@@ -61,44 +52,24 @@ const providers = [
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
-  session: { strategy: 'jwt', maxAge: 30 * 24 * 60 * 60 }, // 30 days
+  trustHost: true,
+  session: { strategy: 'jwt', maxAge: 30 * 24 * 60 * 60 },
   pages: {
     signIn: '/auth/signin',
     error: '/auth/error',
   },
   providers,
   callbacks: {
-    async jwt({ token, user, account, profile, trigger }) {
-      // Store user ID in token from initial sign in
+    async jwt({ token, user }) {
       if (user?.id) {
         token.id = user.id
+        token.sub = user.id
         token.email = user.email
+        token.role = (user as any).role || 'CUSTOMER'
       }
 
-      // OAuth tokens always have sub; use it as id fallback for consistency.
-      if (!token.id && token.sub) {
-        token.id = token.sub
-      }
-
-      // On subsequent requests, ensure token has ID
-      if (!token.id && token.email) {
-        const dbUser = await prisma.user.findUnique({
-          where: { email: token.email as string },
-        })
-        if (dbUser) {
-          token.id = dbUser.id
-          token.sub = dbUser.id
-        }
-      }
-
-      // Always update role from database
-      if (token.id) {
-        const dbUser = await prisma.user.findUnique({
-          where: { id: token.id as string },
-          select: { role: true },
-        })
-        token.role = dbUser?.role || 'CUSTOMER'
-      }
+      if (!token.id && token.sub) token.id = token.sub
+      if (!token.role) token.role = 'CUSTOMER'
 
       return token
     },
