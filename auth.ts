@@ -68,36 +68,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   providers,
   callbacks: {
-    async signIn({ user, account, profile }) {
-      // For OAuth providers, ensure user exists in database
-      if (account?.provider === 'google' && user?.email) {
-        try {
-          // Check if user already exists
-          const existingUser = await prisma.user.findUnique({
-            where: { email: user.email },
-          })
-
-          if (!existingUser) {
-            // Create new user from OAuth profile
-            const newUser = await prisma.user.create({
-              data: {
-                email: user.email,
-                name: user.name || user.email.split('@')[0],
-                image: user.image,
-              },
-            })
-            user.id = newUser.id
-          } else {
-            user.id = existingUser.id
-          }
-        } catch (error) {
-          console.error('[Google SignIn Error]', error)
-          return false
-        }
-      }
-
-      return !!user?.id
-    },
     async jwt({ token, user, account, profile, trigger }) {
       // Store user ID in token from initial sign in
       if (user?.id) {
@@ -127,7 +97,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           where: { id: token.id as string },
           select: { role: true },
         })
-        token.role = dbUser?.role || 'USER'
+        token.role = dbUser?.role || 'CUSTOMER'
       }
 
       return token
@@ -136,7 +106,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const userId = (token?.id as string) || (token?.sub as string)
       if (session.user && userId) {
         session.user.id = userId
-        session.user.role = (token.role as string) || 'USER'
+        session.user.role = (token.role as string) || 'CUSTOMER'
       }
       return session
     },
