@@ -16,7 +16,7 @@ function createTransporter() {
   })
 }
 
-async function sendTransactionalEmail({ to, subject, html }: { to: string; subject: string; html: string }) {
+export async function sendTransactionalEmail({ to, subject, html }: { to: string; subject: string; html: string }) {
   if (process.env.RESEND_API_KEY) {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',

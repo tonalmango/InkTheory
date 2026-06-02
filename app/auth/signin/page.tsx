@@ -39,13 +39,16 @@ export default function SignInPage() {
         email: form.email,
         password: form.password,
         redirect: false,
+        callbackUrl,
       })
 
-      if (result?.error) {
+      if (!result || result.error) {
         toast.error('Invalid email or password')
       } else {
-        router.push(callbackUrl)
+        window.location.assign(result.url || callbackUrl)
       }
+    } catch (error) {
+      toast.error('Sign in failed. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -111,7 +114,14 @@ export default function SignInPage() {
             </div>
 
             <div>
-              <label className="text-xs font-mono text-smoke tracking-widest uppercase block mb-2">Password</label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-mono text-smoke tracking-widest uppercase block">Password</label>
+                {mode === 'signin' && (
+                  <Link href="/auth/forgot-password" className="text-xs text-accent hover:text-accent-dark transition-colors">
+                    Forgot password?
+                  </Link>
+                )}
+              </div>
               <div className="relative">
                 <input type={showPassword ? 'text' : 'password'}
                   value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })}

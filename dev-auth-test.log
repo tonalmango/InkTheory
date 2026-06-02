@@ -1,0 +1,14 @@
+
+> inktheory-streetwear@1.0.0 dev
+> next dev -p 3010
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3010
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1422ms
+ ✓ Compiled /api/auth/[...nextauth] in 320ms (191 modules)
+ ✓ Compiled in 28ms (191 modules)
+ ✓ Compiled in 29ms (191 modules)
+ GET /api/auth/providers 200 in 740ms

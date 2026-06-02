@@ -5,12 +5,15 @@ const authSecret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-  
-  // Get token with proper secret
-  const token = await getToken({ 
-    req, 
-    secret: authSecret 
-  })
+
+  const useSecureCookie =
+    req.nextUrl.protocol === 'https:' ||
+    process.env.AUTH_URL?.startsWith('https://') ||
+    process.env.NEXTAUTH_URL?.startsWith('https://')
+
+  const token =
+    (await getToken({ req, secret: authSecret, secureCookie: useSecureCookie })) ||
+    (await getToken({ req, secret: authSecret, secureCookie: !useSecureCookie }))
 
   const isAuthenticated = !!token
 
