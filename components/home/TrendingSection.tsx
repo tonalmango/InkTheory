@@ -14,15 +14,15 @@ export function TrendingSection({ products }: { products: Product[] }) {
         <div>
           <motion.p className="section-label mb-3 flex items-center gap-2"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-            <Flame size={12} className="text-accent" /> What's Hot
+            <Flame size={12} className="text-accent" /> Currently In The Chat
           </motion.p>
           <motion.h2 className="display-heading text-4xl md:text-5xl"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            Trending<br /><span className="font-display italic text-smoke">Right Now</span>
+            New Drop<br /><span className="font-display italic text-smoke">Energy</span>
           </motion.h2>
         </div>
         <Link href="/shop?trending=true" className="group flex items-center gap-2 text-sm font-mono tracking-widest uppercase text-smoke hover:text-ink transition-colors">
-          See All Trending <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+          Explore The Drop <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">

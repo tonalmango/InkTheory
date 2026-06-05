@@ -24,8 +24,8 @@ export default function CartPage() {
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <ShoppingBag size={48} className="text-mist mb-4" />
-            <p className="text-smoke font-mono text-sm tracking-widest mb-6">YOUR CART IS EMPTY</p>
-            <Link href="/shop" className="btn-primary text-xs">SHOP NOW</Link>
+            <p className="text-smoke font-mono text-sm tracking-widest mb-6">Bhai, cart toh bhar le.</p>
+            <Link href="/shop" className="btn-primary text-xs">CONTINUE SHOPPING</Link>
           </div>
         ) : (
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">

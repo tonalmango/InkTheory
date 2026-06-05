@@ -19,9 +19,9 @@ export default function Error({
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="text-center max-w-md">
         <p className="section-label mb-4">Something went wrong</p>
-        <h1 className="display-heading text-3xl md:text-4xl mb-4">Unexpected Error</h1>
+        <h1 className="display-heading text-3xl md:text-4xl mb-4">Small Kalesh Detected.</h1>
         <p className="text-smoke mb-8 text-sm leading-relaxed">
-          An unexpected error occurred. Please try again or contact support if the issue persists.
+          Something broke for a second. Try again, or contact support if the drama continues.
         </p>
         {error.digest && (
           <p className="text-xs font-mono text-mist mb-6">Error ID: {error.digest}</p>
@@ -34,7 +34,7 @@ export default function Error({
             <RefreshCw size={14} /> TRY AGAIN
           </button>
           <Link href="/" className="btn-secondary inline-flex items-center justify-center gap-2">
-            <ArrowLeft size={14} /> GO HOME
+            <ArrowLeft size={14} /> GO BACK
           </Link>
         </div>
       </div>

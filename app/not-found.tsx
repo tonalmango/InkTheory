@@ -12,21 +12,17 @@ export default function NotFound() {
             404
           </span>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <h1 className="font-display text-3xl md:text-4xl text-ink">Page Not Found</h1>
+            <h1 className="font-display text-3xl md:text-4xl text-ink">Bro Took A Wrong Turn.</h1>
           </div>
         </div>
 
         <p className="text-smoke mb-8 leading-relaxed">
-          The page you're looking for doesn't exist or has been moved.
-          Let's get you back on track.
+          This page is currently undergoing character development.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link href="/" className="btn-primary inline-flex items-center justify-center gap-2">
-            <ArrowLeft size={14} /> GO HOME
-          </Link>
-          <Link href="/shop" className="btn-secondary inline-flex items-center justify-center gap-2">
-            SHOP NOW
+            <ArrowLeft size={14} /> GO BACK
           </Link>
         </div>
       </div>

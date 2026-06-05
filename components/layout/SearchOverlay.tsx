@@ -102,7 +102,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search products, categories…"
+                placeholder="Search lore, drops, chaos…"
                 className="w-full pl-8 bg-transparent text-2xl md:text-3xl font-display text-ink placeholder:text-mist focus:outline-none"
               />
             </div>
@@ -171,7 +171,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               <div className="mt-12">
                 <p className="section-label mb-4">Popular Searches</p>
                 <div className="flex flex-wrap gap-2">
-                  {['Graphic Tees', 'Oversized', 'Hoodies', 'Caps', 'New Arrivals'].map((term) => (
+                  {['Scene Kya Hai', 'Bollywood Brainrot', 'Aukaat Pending', 'Desi Lore', 'Setting Ho Jayega'].map((term) => (
                     <button
                       key={term}
                       onClick={() => setQuery(term)}

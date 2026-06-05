@@ -15,7 +15,7 @@ export default function Loading() {
           <div className="absolute inset-0 border border-accent/20 rounded-full animate-spin" />
         </div>
         <div className="text-center">
-          <p className="font-display text-2xl text-ink">Preparing the drop</p>
+          <p className="font-display text-2xl text-ink">Loading the lore</p>
           <p className="font-mono text-[10px] tracking-[4px] uppercase text-smoke mt-2">InkTheory</p>
         </div>
       </div>

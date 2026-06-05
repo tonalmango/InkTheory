@@ -99,7 +99,7 @@ export default function ResetPasswordPage({ params }: PageProps) {
               <span className="italic text-accent">Expired.</span>
             </h2>
             <p className="text-cream/50 max-w-sm">
-              The password reset link has expired. Please request a new one.
+              The reset link expired. Request a fresh one and we move.
             </p>
           </div>
           <p className="text-cream/20 text-xs font-mono">© 2024 InkTheory</p>
@@ -147,11 +147,11 @@ export default function ResetPasswordPage({ params }: PageProps) {
         <Link href="/" className="font-display text-3xl tracking-[6px] text-cream">InkTheory</Link>
         <div>
           <h2 className="font-display text-5xl text-cream leading-tight mb-4">
-            Create a New<br />
+            Create A New<br />
             <span className="italic text-accent">Password.</span>
           </h2>
           <p className="text-cream/50 max-w-sm">
-            Make sure it's strong and unique to keep your account secure.
+            Keep it strong. Keep the account drama-free.
           </p>
         </div>
         <p className="text-cream/20 text-xs font-mono">© 2024 InkTheory</p>

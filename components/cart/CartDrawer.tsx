@@ -54,13 +54,13 @@ export function CartDrawer() {
                     className="flex flex-col items-center justify-center h-full text-center gap-4 py-20"
                   >
                     <ShoppingBag size={40} className="text-mist" />
-                    <p className="text-smoke font-mono text-sm tracking-widest">YOUR CART IS EMPTY</p>
+                    <p className="text-smoke font-mono text-sm tracking-widest">Bhai, cart toh bhar le.</p>
                     <Link
                       href="/shop"
                       onClick={closeCart}
                       className="btn-primary text-xs"
                     >
-                      SHOP NOW
+                      CONTINUE SHOPPING
                     </Link>
                   </motion.div>
                 ) : (

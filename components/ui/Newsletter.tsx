@@ -22,13 +22,12 @@ export function Newsletter() {
   return (
     <section className="bg-cream-dark border-t border-ink/10">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center">
-        <p className="section-label mb-3">Stay Updated</p>
+        <p className="section-label mb-3">Drop Alerts</p>
         <h2 className="display-heading text-3xl md:text-4xl mb-3">
-          Get Early Access to Drops
+          Join The Circle.
         </h2>
         <p className="text-smoke text-sm mb-8 max-w-md mx-auto">
-          Subscribe to be the first to know about new releases, exclusive discounts,
-          and limited drops. No spam, ever.
+          Early access. New drops. No bakchodi.
         </p>
 
         <AnimatePresence mode="wait">
@@ -64,7 +63,7 @@ export function Newsletter() {
                 {loading ? (
                   <span className="w-4 h-4 border-2 border-cream/30 border-t-cream rounded-full animate-spin" />
                 ) : (
-                  <>SUBSCRIBE <ArrowRight size={13} /></>
+                  <>I'M IN <ArrowRight size={13} /></>
                 )}
               </button>
             </motion.form>
@@ -72,7 +71,7 @@ export function Newsletter() {
         </AnimatePresence>
 
         <p className="text-mist text-xs mt-4 font-mono">
-          Unsubscribe anytime · No spam
+          Unsubscribe anytime · no spam
         </p>
       </div>
     </section>

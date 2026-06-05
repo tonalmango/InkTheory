@@ -1,12 +1,11 @@
 // components/home/MarqueeSection.tsx
 export function MarqueeSection() {
   const items = [
-    'PREMIUM STREETWEAR',
-    'PRINT ON DEMAND',
-    'FREE SHIPPING ABOVE ₹1500',
-    'PAN INDIA DELIVERY',
-    'LIMITED DROPS',
-    'QUALITY GUARANTEED',
+    'TOO ONLINE TO BE NORMAL',
+    'NEW DROP LIVE NOW',
+    'FREE SHIPPING ABOVE ₹1499',
+    'JOIN THE CIRCLE',
+    'MADE FOR THE INDIAN MAIN CHARACTER',
   ]
 
   return (

@@ -46,11 +46,11 @@ export default function ForgotPasswordPage() {
           <Link href="/" className="font-display text-3xl tracking-[6px] text-cream">InkTheory</Link>
           <div>
             <h2 className="font-display text-5xl text-cream leading-tight mb-4">
-              Check Your<br />
-              <span className="italic text-accent">Email.</span>
+              Check The<br />
+              <span className="italic text-accent">Inbox.</span>
             </h2>
             <p className="text-cream/50 max-w-sm">
-              We've sent a password reset link to your email. The link will expire in 1 hour.
+              We sent the reset link. It expires in 1 hour.
             </p>
           </div>
           <p className="text-cream/20 text-xs font-mono">© 2024 InkTheory</p>
@@ -100,12 +100,12 @@ export default function ForgotPasswordPage() {
       <div className="hidden lg:flex lg:w-1/2 bg-ink flex-col justify-between p-12">
         <Link href="/" className="font-display text-3xl tracking-[6px] text-cream">InkTheory</Link>
         <div>
-          <h2 className="font-display text-5xl text-cream leading-tight mb-4">
-            Reset Your<br />
+            <h2 className="font-display text-5xl text-cream leading-tight mb-4">
+            Reset The<br />
             <span className="italic text-accent">Password.</span>
           </h2>
           <p className="text-cream/50 max-w-sm">
-            Enter your email and we'll send you a link to reset your password.
+            Forgot it? Happens. Drop your email and we will send a reset link.
           </p>
         </div>
         <p className="text-cream/20 text-xs font-mono">© 2024 InkTheory</p>
@@ -121,7 +121,7 @@ export default function ForgotPasswordPage() {
 
           <h1 className="display-heading text-3xl mb-2">Forgot password?</h1>
           <p className="text-smoke text-sm mb-8">
-            No worries! Enter your email and we'll send you a reset link.
+            No stress. Enter your email and we will send you a reset link.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">

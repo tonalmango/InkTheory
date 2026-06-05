@@ -5,20 +5,20 @@ import { ChevronDown } from 'lucide-react'
 
 const faqs = [
   {
-    q: 'How long does delivery take?',
-    a: 'Most orders ship across India in 5-7 business days after payment confirmation. Tracking appears in your account once the order is dispatched.',
+    q: 'When will my order stop buffering?',
+    a: 'Most orders ship across India in 5-7 business days after payment confirmation. Tracking appears in your account once it dispatches.',
   },
   {
     q: 'Can I pay with UPI or cards?',
     a: 'Checkout is powered by PayPal. Cards and UPI can appear when they are enabled for your PayPal account and buyer region.',
   },
   {
-    q: 'Are products printed after I order?',
-    a: 'Yes. InkTheory uses print-on-demand fulfillment through Printrove, which helps keep drops fresh and avoids unnecessary inventory waste.',
+    q: 'Is every piece made after I order?',
+    a: 'Yes. InkTheory uses print-on-demand fulfillment through Printrove, so drops stay fresh and inventory does not sit around pretending to be rare.',
   },
   {
     q: 'Can I return or exchange a size?',
-    a: 'Returns are supported within the stated return window for eligible products. Use the size finder on product pages before ordering for a better fit.',
+    a: 'Returns are supported within the stated return window for eligible products. Use the size finder before ordering so the fit does not become a plot twist.',
   },
 ]
 

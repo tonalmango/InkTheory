@@ -48,20 +48,24 @@ export function HeroSection() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
         >
           <p className="text-cream/60 font-mono text-xs tracking-[6px] uppercase mb-6">
-            SS 2024 Drop 01
+            Streetwear For The Chronically Online generation
           </p>
 
           <h1 className="font-display text-cream text-5xl sm:text-6xl md:text-8xl lg:text-[120px] leading-[0.92] mb-8 max-w-4xl">
-            Wear What<br />
-            <span className="italic text-accent">You Are.</span>
+            Too Online<br />
+            <span className="italic text-accent">To Be Normal.</span>
           </h1>
+
+          <p className="text-cream/72 text-base md:text-lg leading-relaxed max-w-xl mb-8">
+            Modern Indian streetwear inspired by culture, chaos and the stories we all know.
+          </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
               href="/shop"
               className="group flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm tracking-widest uppercase font-mono hover:bg-accent transition-colors duration-300"
             >
-              Shop Now
+              ENTER THE LORE
               <ArrowRight
                 size={14}
                 className="group-hover:translate-x-1 transition-transform duration-200"
@@ -72,7 +76,7 @@ export function HeroSection() {
               href="/collections"
               className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b border-cream/30 pb-0.5 hover:text-cream hover:border-cream transition-colors duration-200"
             >
-              View Collections
+              Explore Collections
             </Link>
           </div>
         </motion.div>

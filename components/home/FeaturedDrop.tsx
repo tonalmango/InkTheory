@@ -25,7 +25,7 @@ export function FeaturedDrop() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
             <div className="absolute left-5 bottom-5 right-5 text-cream">
               <p className="font-mono text-xs tracking-[4px] uppercase text-accent mb-2">Featured Drop</p>
-              <p className="font-display text-4xl md:text-5xl leading-tight">Noir Graphic Series</p>
+              <p className="font-display text-4xl md:text-5xl leading-tight">SCENE KYA HAI?™</p>
             </div>
           </motion.div>
 
@@ -46,13 +46,13 @@ export function FeaturedDrop() {
             <div className="relative">
               <div className="inline-flex items-center gap-2 text-accent mb-6">
                 <Sparkles size={16} />
-                <span className="font-mono text-xs tracking-[3px] uppercase">Limited Mood</span>
+                <span className="font-mono text-xs tracking-[3px] uppercase">Indian Internet Energy</span>
               </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-tight max-w-xl">
-                Black-base pieces made for clean layering.
+                Not another boring clothing brand.
               </h2>
               <p className="text-cream/55 leading-relaxed mt-6 max-w-lg">
-                Heavy graphics, quieter silhouettes, and premium blanks that move from daily wear to night-out fits without trying too hard.
+                We turn internet culture, Bollywood energy and everyday Indian experiences into wearable stories.
               </p>
             </div>
             <div className="relative mt-10 flex flex-col sm:flex-row gap-3">

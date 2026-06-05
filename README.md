@@ -1,6 +1,6 @@
-# InkTheory - Premium Streetwear Platform
+# InkTheory - Modern Indian Streetwear
 
-Next.js storefront for print-on-demand streetwear with Printrove fulfillment, PayPal checkout, account orders, coupons, cart, wishlist, admin tools, and email notifications.
+Next.js storefront for modern Indian streetwear inspired by culture, chaos and everyday stories, with Printrove fulfillment, PayPal checkout, account orders, coupons, cart, wishlist, admin tools, and email notifications.
 
 ## Setup
 

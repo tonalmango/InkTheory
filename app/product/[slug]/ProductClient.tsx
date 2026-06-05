@@ -12,6 +12,7 @@ import { SizeFinder } from '@/components/product/SizeFinder'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import { getProductBrandDescription } from '@/lib/brand'
 
 interface Props {
   product: Product & { avgRating: number }
@@ -45,6 +46,7 @@ export function ProductClient({ product, related }: Props) {
   const discountPct = hasDiscount
     ? Math.round(((product.comparePrice! - product.basePrice) / product.comparePrice!) * 100)
     : 0
+  const brandDescription = getProductBrandDescription(product)
 
   const handleAddToCart = async () => {
     if (!selectedSize) { toast.error('Please select a size'); return }
@@ -261,12 +263,12 @@ export function ProductClient({ product, related }: Props) {
                     <motion.p className="text-sm text-smoke leading-relaxed"
                       initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}>
-                      {product.description}
+                      {brandDescription}
                     </motion.p>
                   )}
                 </AnimatePresence>
                 {!descExpanded && (
-                  <p className="text-sm text-smoke leading-relaxed line-clamp-2">{product.description}</p>
+                  <p className="text-sm text-smoke leading-relaxed line-clamp-2">{brandDescription}</p>
                 )}
               </div>
             </div>

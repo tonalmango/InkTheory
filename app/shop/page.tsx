@@ -4,8 +4,8 @@ import { ShopClient } from './ShopClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Shop All Products',
-  description: 'Browse our complete collection of premium streetwear — printed tees, oversized fits, hoodies, caps and more.',
+  title: 'Shop All',
+  description: 'Streetwear inspired by modern Indian culture.',
 }
 
 export default function ShopPage() {

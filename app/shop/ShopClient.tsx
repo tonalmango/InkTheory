@@ -97,6 +97,11 @@ export function ShopClient() {
         <h1 className="display-heading text-3xl md:text-4xl">
           {q ? 'Search Results' : trending ? 'Trending Now' : category ? categoryLabel(category) : 'Shop All'}
         </h1>
+        {!q && !trending && !category && (
+          <p className="text-smoke text-sm mt-3 max-w-xl">
+            Streetwear inspired by modern Indian culture.
+          </p>
+        )}
         <p className="text-smoke text-sm mt-2">{total} products</p>
       </div>
 

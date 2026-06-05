@@ -145,7 +145,7 @@ export async function sendOrderConfirmationEmail(order: Order, userEmail: string
         Questions? Email us at <a href="mailto:support@inktheory.in" style="color:#C8A951;">support@inktheory.in</a>
       </p>
       <p style="color:#A8A8A8;font-size:11px;margin:8px 0 0;">
-        © 2024 InkTheory. Premium Streetwear.
+        © 2024 InkTheory. Too Online To Be Normal.
       </p>
     </div>
   </div>

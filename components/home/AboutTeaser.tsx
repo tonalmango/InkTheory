@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 const stats = [
-  { number: '500+', label: 'Designs' },
-  { number: '10K+', label: 'Happy Customers' },
+  { number: '5', label: 'Lore Drops' },
+  { number: '24/7', label: 'Group Chat Energy' },
   { number: '5-7', label: 'Day Delivery' },
-  { number: '100%', label: 'Quality Checked' },
+  { number: '100%', label: 'Made To Order' },
 ]
 
 export function AboutTeaser() {
@@ -44,14 +44,15 @@ export function AboutTeaser() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="section-label text-cream/45 mb-4">Our Story</p>
+            <p className="section-label text-cream/45 mb-4">The Lore</p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl text-cream leading-tight mb-6">
-              Modern prints,<br />
-              <span className="italic text-accent">black-label</span> energy.
+              Built For<br />
+              <span className="italic text-accent">Modern India.</span>
             </h2>
             <p className="text-cream/58 leading-relaxed mb-8 max-w-xl">
-              InkTheory is built around expressive print systems, premium silhouettes, and low-waste fulfillment.
-              Every drop starts as a visual idea, then becomes a wearable design produced on demand.
+              We grew up on Bollywood, memes, internet culture, wedding dance floors,
+              engineering colleges, startup dreams and endless group chats.
+              InkTheory turns those moments into wearable stories.
             </p>
             <Link href="/about"
               className="group inline-flex items-center gap-3 text-sm font-mono tracking-widest uppercase text-accent hover:text-cream transition-colors border-b border-accent/30 pb-1">

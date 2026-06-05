@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 import { CheckCircle, Lock, MessageCircle, ShoppingBag } from 'lucide-react'
 
 const items = [
-  { icon: ShoppingBag, label: 'Made on demand', text: 'Fresh prints, lower waste' },
-  { icon: CheckCircle, label: 'Quality checked', text: 'Every order reviewed before dispatch' },
+  { icon: ShoppingBag, label: 'Made to order', text: 'Fresh prints, no dead stock' },
+  { icon: CheckCircle, label: 'Quality checked', text: 'Every piece gets a final look' },
   { icon: Lock, label: 'Secure checkout', text: 'PayPal protected payments' },
-  { icon: MessageCircle, label: 'Human support', text: 'Fast help for orders and sizing' },
+  { icon: MessageCircle, label: 'Human support', text: 'Real help, no scripted drama' },
 ]
 
 export function TrustBar() {

@@ -60,11 +60,11 @@ export default function SignInPage() {
         <Link href="/" className="font-display text-3xl tracking-[6px] text-cream">InkTheory</Link>
         <div>
           <h2 className="font-display text-5xl text-cream leading-tight mb-4">
-            Premium Drops,<br />
-            <span className="italic text-accent">Delivered.</span>
+            Join The<br />
+            <span className="italic text-accent">Circle.</span>
           </h2>
           <p className="text-cream/50 max-w-sm">
-            Create an account to save your wishlist, track orders, and get early access to new drops.
+            Save wishlists, track orders and keep your lore in one place.
           </p>
         </div>
         <p className="text-cream/20 text-xs font-mono">© 2024 InkTheory</p>
@@ -79,7 +79,7 @@ export default function SignInPage() {
           </div>
 
           <h1 className="display-heading text-3xl mb-2">
-            {mode === 'signin' ? 'Welcome back' : 'Create account'}
+            {mode === 'signin' ? 'Welcome back' : 'Join the circle'}
           </h1>
           <p className="text-smoke text-sm mb-8">
             {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}

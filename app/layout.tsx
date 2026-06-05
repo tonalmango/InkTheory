@@ -30,15 +30,15 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'INKTHEORY — Premium Streetwear',
+    default: 'INKTHEORY | Too Online To Be Normal',
     template: '%s | INKTHEORY',
   },
   description:
-    'Premium print-on-demand streetwear. Graphic tees, oversized fits, hoodies & accessories. Ships across India.',
-  keywords: ['streetwear', 'graphic tees', 'hoodies', 'premium', 'india', 'fashion'],
+    'Modern Indian streetwear inspired by culture, chaos, Bollywood energy and everyday stories.',
+  keywords: ['streetwear', 'indian streetwear', 'desi culture', 'bollywood', 'internet culture', 'graphic tees', 'india'],
   openGraph: {
-    title: 'INKTHEORY — Premium Streetwear',
-    description: 'Premium print-on-demand streetwear',
+    title: 'INKTHEORY | Too Online To Be Normal',
+    description: 'Modern Indian streetwear inspired by culture, chaos and everyday stories.',
     type: 'website',
     locale: 'en_IN',
   },

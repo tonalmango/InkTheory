@@ -24,7 +24,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Curated Drops
+            Current Lore
           </motion.p>
           <motion.h2
             className="display-heading text-4xl md:text-5xl"
@@ -33,8 +33,8 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            Featured<br />
-            <span className="font-display italic text-smoke">Pieces</span>
+            Main Character<br />
+            <span className="font-display italic text-smoke">Energy</span>
           </motion.h2>
         </div>
 
@@ -48,7 +48,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
             href="/shop"
             className="group flex items-center gap-2 text-sm font-mono tracking-widest uppercase text-smoke hover:text-ink transition-colors"
           >
-            View All
+            Shop All
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>

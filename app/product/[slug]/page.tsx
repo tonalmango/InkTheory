@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { ProductClient } from './ProductClient'
 import { getRelatedProducts } from '@/lib/ai/productRecommender'
 import { Metadata } from 'next'
+import { getProductBrandDescription } from '@/lib/brand'
 
 interface Props {
   params: { slug: string }
@@ -12,12 +13,12 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },
-    select: { name: true, description: true, images: true },
+    select: { name: true, description: true, images: true, category: true, tags: true },
   })
   if (!product) return { title: 'Product Not Found' }
   return {
     title: product.name,
-    description: product.description.slice(0, 160),
+    description: getProductBrandDescription(product).slice(0, 160),
     openGraph: { images: product.images[0] ? [product.images[0]] : [] },
   }
 }

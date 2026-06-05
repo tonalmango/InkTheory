@@ -51,11 +51,11 @@ export function LoginPromptPopup() {
           <div className="p-5 pr-10">
             <div className="flex items-center gap-2 text-accent mb-3">
               <User size={16} />
-              <span className="text-xs font-mono tracking-[3px] uppercase">Members First</span>
+              <span className="text-xs font-mono tracking-[3px] uppercase">Circle Access</span>
             </div>
-            <p className="font-display text-2xl leading-tight">Save your cart and unlock faster checkout.</p>
+            <p className="font-display text-2xl leading-tight">Save the lore before it disappears.</p>
             <p className="text-cream/55 text-sm mt-2 leading-relaxed">
-              Sign in to keep wishlists, order history, and drop access in one place.
+              Sign in to keep wishlists, order history and drop access in one place.
             </p>
             <Link
               href={`/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`}
