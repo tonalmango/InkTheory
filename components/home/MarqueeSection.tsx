@@ -9,15 +9,15 @@ export function MarqueeSection() {
   ]
 
   return (
-    <div className="bg-ink py-4 overflow-hidden border-y border-ink">
+    <div className="bg-ink py-5 overflow-hidden border-y-2 border-saffron/20">
       <div className="marquee-inner">
         {[...items, ...items].map((item, i) => (
           <span
             key={i}
-            className="font-mono text-xs tracking-[4px] uppercase text-cream/50 mx-10 flex-shrink-0"
+            className="font-mono text-xs tracking-widest uppercase text-cream/60 mx-12 flex-shrink-0 hover:text-saffron transition-colors"
           >
             {item}
-            <span className="mx-10 text-accent">·</span>
+            <span className="mx-12 text-saffron">●</span>
           </span>
         ))}
       </div>

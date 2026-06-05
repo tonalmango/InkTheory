@@ -6,6 +6,9 @@ export const BRAND_COLLECTIONS = [
     productDescription: "The official uniform of people who always know what's happening.",
     href: '/shop?q=Scene%20Kya%20Hai',
     tag: 'Indian Internet',
+    chapter: 'Chapter 01',
+    cue: 'Now Showing',
+    accent: '#D97706',
     keywords: ['scene kya hai', 'kalesh', 'dekhte hain', 'bhai dekh', 'ho jayega', 'internet'],
   },
   {
@@ -15,6 +18,9 @@ export const BRAND_COLLECTIONS = [
     productDescription: 'For people whose internal monologue has background music.',
     href: '/shop?q=Bollywood%20Brainrot',
     tag: 'Cinema Energy',
+    chapter: 'Chapter 02',
+    cue: 'Feature Presentation',
+    accent: '#C9A227',
     keywords: ['bollywood', 'picture abhi baaki', 'entry maaro', 'interval', 'background music', 'end credits', 'cinema'],
   },
   {
@@ -24,6 +30,9 @@ export const BRAND_COLLECTIONS = [
     productDescription: 'Rich in potential. Financially loading.',
     href: '/shop?q=Aukaat%20Pending',
     tag: 'Luxury Loading',
+    chapter: 'Chapter 03',
+    cue: 'Progress Report',
+    accent: '#1E40AF',
     keywords: ['aukaat', 'rich in potential', 'luxury loading', 'future crorepati', 'emi', 'not there yet'],
   },
   {
@@ -33,6 +42,9 @@ export const BRAND_COLLECTIONS = [
     productDescription: "Some things don't need explanation.",
     href: '/shop?q=Desi%20Lore',
     tag: 'Cultural Code',
+    chapter: 'Chapter 04',
+    cue: 'Classified File',
+    accent: '#991B1B',
     keywords: ['desi lore', 'trust me bro', 'bhai ka contact', 'internal matter', 'adjust kar lo'],
   },
   {
@@ -42,6 +54,9 @@ export const BRAND_COLLECTIONS = [
     productDescription: "If there's a way, we'll find it.",
     href: '/shop?q=Setting%20Ho%20Jayega',
     tag: 'Jugaad Mode',
+    chapter: 'Chapter 05',
+    cue: 'Unofficial System',
+    accent: '#D97706',
     keywords: ['setting ho jayega', 'kaam ho jayega', 'jugaad', 'contact hai', 'dekh lenge'],
   },
 ]

@@ -18,6 +18,10 @@ module.exports = {
         accent: '#C8A951',
         'accent-light': '#D4BA72',
         'accent-dark': '#A88930',
+        saffron: '#D97706',
+        'royal-blue': '#1E40AF',
+        bollywood: '#C9A227',
+        'vintage-red': '#991B1B',
       },
       fontFamily: {
         display: ['var(--font-display)', 'serif'],
@@ -62,6 +66,20 @@ module.exports = {
       },
       aspectRatio: {
         'product': '3 / 4',
+      },
+      fontSize: {
+        'xs': ['10px', { lineHeight: '12px', letterSpacing: '0.08em' }],
+        'sm': ['13px', { lineHeight: '16px', letterSpacing: '0.03em' }],
+        'base': ['14px', { lineHeight: '20px', letterSpacing: '0.02em' }],
+        'lg': ['16px', { lineHeight: '24px', letterSpacing: '0.01em' }],
+      },
+      boxShadow: {
+        'editorial': '0 12px 32px rgba(10, 10, 10, 0.08)',
+        'editorial-hover': '0 20px 48px rgba(10, 10, 10, 0.12)',
+        'cinematic': 'inset 0 1px 0 rgba(245, 240, 232, 0.1)',
+      },
+      borderWidth: {
+        'hairline': '0.5px',
       },
     },
   },

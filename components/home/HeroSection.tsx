@@ -31,10 +31,11 @@ export function HeroSection() {
         <div
           className="w-full h-full bg-center bg-cover"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.5) 100%), 
+            backgroundImage: `linear-gradient(90deg, rgba(153,27,27,0.22) 0%, rgba(10,10,10,0.04) 38%, rgba(30,64,175,0.16) 100%), linear-gradient(to bottom, rgba(10,10,10,0.18) 0%, rgba(10,10,10,0.62) 100%), 
               url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1800&q=90')`,
           }}
         />
+        <div className="absolute inset-0 opacity-[0.13] bg-[linear-gradient(90deg,transparent_0_94%,rgba(245,240,232,0.5)_94%_95%,transparent_95%_100%)] bg-[length:72px_100%]" />
       </motion.div>
 
       {/* Content */}
@@ -47,36 +48,38 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
         >
-          <p className="text-cream/60 font-mono text-xs tracking-[6px] uppercase mb-6">
-            Streetwear For The Chronically Online generation
+          <p className="cinema-label border-cream/25 text-cream/70 mb-8 md:mb-10">
+            Now Showing · Feature Presentation · Chapter 01
           </p>
 
-          <h1 className="font-display text-cream text-5xl sm:text-6xl md:text-8xl lg:text-[120px] leading-[0.92] mb-8 max-w-4xl">
+          <h1 className="cinema-title text-cream leading-[0.92] mb-8 max-w-5xl">
             Too Online<br />
-            <span className="italic text-accent">To Be Normal.</span>
+            <span className="italic text-saffron">To Be Normal.</span>
           </h1>
 
-          <p className="text-cream/72 text-base md:text-lg leading-relaxed max-w-xl mb-8">
-            Modern Indian streetwear inspired by culture, chaos and the stories we all know.
+          <p className="text-cream/75 text-base md:text-lg leading-relaxed max-w-2xl mb-10 font-light">
+            Premium Indian streetwear. Inspired by culture, chaos, memes, and the stories we all live.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <Link
               href="/shop"
-              className="group flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm tracking-widest uppercase font-mono hover:bg-accent transition-colors duration-300"
+              className="group inline-flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-saffron hover:text-cream transition-all duration-300 relative overflow-hidden"
             >
-              ENTER THE LORE
-              <ArrowRight
-                size={14}
-                className="group-hover:translate-x-1 transition-transform duration-200"
-              />
+              <span className="relative z-10 flex items-center gap-3">
+                Shop The Drop
+                <ArrowRight
+                  size={14}
+                  className="group-hover:translate-x-1 transition-transform duration-200"
+                />
+              </span>
             </Link>
 
             <Link
               href="/collections"
-              className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b border-cream/30 pb-0.5 hover:text-cream hover:border-cream transition-colors duration-200"
+              className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b-2 border-saffron/40 pb-1 hover:text-cream hover:border-saffron transition-all duration-300"
             >
-              Explore Collections
+              Explore The Lore
             </Link>
           </div>
         </motion.div>

@@ -39,16 +39,13 @@ export default function SignInPage() {
         email: form.email,
         password: form.password,
         redirect: false,
-        callbackUrl,
       })
 
-      if (!result || result.error) {
+      if (result?.error) {
         toast.error('Invalid email or password')
       } else {
-        window.location.assign(result.url || callbackUrl)
+        router.push(callbackUrl)
       }
-    } catch (error) {
-      toast.error('Sign in failed. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -60,11 +57,11 @@ export default function SignInPage() {
         <Link href="/" className="font-display text-3xl tracking-[6px] text-cream">InkTheory</Link>
         <div>
           <h2 className="font-display text-5xl text-cream leading-tight mb-4">
-            Join The<br />
-            <span className="italic text-accent">Circle.</span>
+            Premium Drops,<br />
+            <span className="italic text-accent">Delivered.</span>
           </h2>
           <p className="text-cream/50 max-w-sm">
-            Save wishlists, track orders and keep your lore in one place.
+            Create an account to save your wishlist, track orders, and get early access to new drops.
           </p>
         </div>
         <p className="text-cream/20 text-xs font-mono">© 2024 InkTheory</p>
@@ -79,7 +76,7 @@ export default function SignInPage() {
           </div>
 
           <h1 className="display-heading text-3xl mb-2">
-            {mode === 'signin' ? 'Welcome back' : 'Join the circle'}
+            {mode === 'signin' ? 'Welcome back' : 'Create account'}
           </h1>
           <p className="text-smoke text-sm mb-8">
             {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}

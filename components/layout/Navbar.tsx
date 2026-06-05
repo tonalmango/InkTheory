@@ -54,25 +54,26 @@ export function Navbar() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="relative z-10">
-              <span className={`font-display text-2xl md:text-3xl tracking-[4px] sm:tracking-[6px] font-bold transition-colors ${navTextClass}`}>
-                InkTheory
+            <Link href="/" className="relative z-10 group">
+              <span className={`font-display text-2xl md:text-3xl tracking-[5px] font-bold transition-all duration-300 ${navTextClass} group-hover:text-saffron`}>
+                INKTHEORY
               </span>
+              <span className="absolute -bottom-1 left-0 h-0.5 bg-saffron w-0 group-hover:w-full transition-all duration-300" />
             </Link>
 
             {/* Desktop Nav */}
-            <ul className="hidden md:flex items-center gap-8">
+            <ul className="hidden md:flex items-center gap-10">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`text-sm tracking-widest uppercase font-mono transition-colors duration-200 relative group ${
+                    className={`text-xs tracking-widest uppercase font-mono transition-colors duration-200 relative group ${
                       pathname.startsWith(link.href) ? navTextClass : mutedNavTextClass
                     }`}
                   >
                     {link.label}
                     <span
-                      className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
+                      className={`absolute -bottom-1 left-0 h-px bg-saffron transition-all duration-300 ${
                         pathname.startsWith(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
                     />
@@ -82,10 +83,10 @@ export function Navbar() {
             </ul>
 
             {/* Actions */}
-            <div className="flex items-center gap-2 md:gap-4">
+            <div className="flex items-center gap-2 md:gap-5">
               <button
                 onClick={() => setSearchOpen(true)}
-                className={`p-2 hover:text-accent transition-colors ${navTextClass}`}
+                className={`p-2 hover:text-saffron transition-colors duration-300 ${navTextClass}`}
                 aria-label="Search"
               >
                 <Search size={20} />
@@ -93,7 +94,7 @@ export function Navbar() {
 
               <Link
                 href="/wishlist"
-                className={`p-2 hover:text-accent transition-colors hidden md:block ${navTextClass}`}
+                className={`p-2 hover:text-saffron transition-colors duration-300 hidden md:block ${navTextClass}`}
                 aria-label="Wishlist"
               >
                 <Heart size={20} />
