@@ -17,8 +17,11 @@ module.exports = {
         mist: '#A8A8A8',
         accent: '#C8A951',
         'accent-light': '#D4BA72',
-        'accent-dark': '#A88930',
-        saffron: '#D97706',
+        'accent-dark': '#0E0B1B',
+
+        saffron: '#0E0B1B',
+
+
         'royal-blue': '#1E40AF',
         bollywood: '#C9A227',
         'vintage-red': '#991B1B',

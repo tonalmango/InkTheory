@@ -65,7 +65,8 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <Link
               href="/shop"
-              className="group inline-flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-saffron hover:text-cream transition-all duration-300 relative overflow-hidden"
+              className="group inline-flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-accent-dark hover:text-ink transition-all duration-300 relative overflow-hidden"
+
             >
               <span className="relative z-10 flex items-center gap-3">
                 Shop Now
@@ -78,7 +79,8 @@ export function HeroSection() {
 
             <Link
               href="/collections"
-              className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b-2 border-saffron/40 pb-1 hover:text-cream hover:border-saffron transition-all duration-300"
+              className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b-2 border-accent-dark/40 pb-1 hover:text-cream hover:border-accent-dark transition-all duration-300"
+
             >
               Explore Drops
             </Link>
