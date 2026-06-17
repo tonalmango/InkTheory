@@ -49,16 +49,17 @@ export function HeroSection() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
         >
           <p className="cinema-label border-cream/25 text-cream/70 mb-8 md:mb-10">
-            Now Showing · Feature Presentation · Chapter 01
+            Premium streetwear for the Indian feed
           </p>
 
           <h1 className="cinema-title text-cream leading-[0.92] mb-8 max-w-5xl">
-            Too Online<br />
-            <span className="italic text-saffron">To Be Normal.</span>
+            WEAR WHAT YOUR FEED
+            <br />
+            WISHES IT WAS.
           </h1>
 
           <p className="text-cream/75 text-base md:text-lg leading-relaxed max-w-2xl mb-10 font-light">
-            Premium Indian streetwear. Inspired by culture, chaos, memes, and the stories we all live.
+            Premium oversized graphic streetwear inspired by internet culture, pop references and everyday chaos.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
@@ -67,7 +68,7 @@ export function HeroSection() {
               className="group inline-flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-saffron hover:text-cream transition-all duration-300 relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-3">
-                Shop The Drop
+                Shop Now
                 <ArrowRight
                   size={14}
                   className="group-hover:translate-x-1 transition-transform duration-200"
@@ -79,9 +80,10 @@ export function HeroSection() {
               href="/collections"
               className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b-2 border-saffron/40 pb-1 hover:text-cream hover:border-saffron transition-all duration-300"
             >
-              Explore The Lore
+              Explore Drops
             </Link>
           </div>
+
         </motion.div>
 
         {/* Scroll indicator */}

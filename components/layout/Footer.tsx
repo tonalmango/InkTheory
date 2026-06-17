@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Camera, MessageCircle, Video } from 'lucide-react'
-import { BRAND_COLLECTIONS } from '@/lib/brand'
+import { BRAND_COLLECTIONS, BRAND_COLLECTIONS_ADDITIONAL } from '@/lib/brand'
+
 
 const MARQUEE_TEXT = 'TOO ONLINE TO BE NORMAL · MADE FOR THE INDIAN MAIN CHARACTER · JOIN THE CIRCLE · '
 
@@ -40,12 +41,17 @@ export function Footer() {
           <div>
             <p className="text-xs tracking-widest uppercase text-saffron/70 mb-6 font-mono font-semibold">Collections</p>
             <ul className="space-y-4">
-              {[
+{[
                 ...BRAND_COLLECTIONS.map((collection) => ({
                   label: collection.title,
                   href: collection.href,
                 })),
+                ...BRAND_COLLECTIONS_ADDITIONAL.map((collection) => ({
+                  label: collection.title,
+                  href: collection.href,
+                })),
               ].map((link) => (
+
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-cream/50 hover:text-saffron transition-colors duration-300 relative group">
                     {link.label}

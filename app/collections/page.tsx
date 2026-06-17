@@ -2,7 +2,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
-import { BRAND_COLLECTIONS } from '@/lib/brand'
+import { BRAND_COLLECTIONS, BRAND_COLLECTIONS_ADDITIONAL } from '@/lib/brand'
+
 
 export const metadata: Metadata = {
   title: 'Collections',
@@ -10,38 +11,28 @@ export const metadata: Metadata = {
 }
 
 const collections = [
-  {
-    ...BRAND_COLLECTIONS[0],
-    image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80',
-  },
-  {
-    ...BRAND_COLLECTIONS[1],
-    image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80',
-  },
-  {
-    ...BRAND_COLLECTIONS[2],
-    image: 'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80',
-  },
-  {
-    ...BRAND_COLLECTIONS[3],
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80',
-  },
-  {
-    ...BRAND_COLLECTIONS[4],
-    image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800&q=80',
-  },
+  { ...BRAND_COLLECTIONS[0], image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80' },
+  { ...BRAND_COLLECTIONS[1], image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80' },
+  { ...BRAND_COLLECTIONS[2], image: 'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80' },
+  { ...BRAND_COLLECTIONS[3], image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80' },
+  { ...BRAND_COLLECTIONS[4], image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800&q=80' },
+  { ...BRAND_COLLECTIONS_ADDITIONAL[0], image: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=800&q=80' },
+  { ...BRAND_COLLECTIONS_ADDITIONAL[1], image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80' },
 ]
+
 
 export default function CollectionsPage() {
   return (
     <div className="pt-20 md:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="mb-12">
-          <p className="section-label mb-3">Browse</p>
-          <h1 className="display-heading text-4xl md:text-5xl">Choose Your Lore.</h1>
+          <p className="section-label mb-3">Shop</p>
+          <h1 className="display-heading text-4xl md:text-5xl">Find your fit.</h1>
+
           <p className="text-smoke text-sm mt-3 max-w-xl">
-            Five sides of modern Indian life. Some cinematic, some chaotic, all familiar.
+            Seven collections. One rule: wear it like you mean it.
           </p>
+
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

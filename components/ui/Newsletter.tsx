@@ -22,13 +22,14 @@ export function Newsletter() {
   return (
     <section className="bg-cream-dark border-t border-ink/10">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center">
-        <p className="section-label mb-3">Drop Alerts</p>
+        <p className="section-label mb-3">Newsletter</p>
         <h2 className="display-heading text-3xl md:text-4xl mb-3">
-          Join The Circle.
+          Get Drop Alerts.
         </h2>
         <p className="text-smoke text-sm mb-8 max-w-md mx-auto">
-          Early access. New drops. No bakchodi.
+          New arrivals + limited drops. Zero spam.
         </p>
+
 
         <AnimatePresence mode="wait">
           {submitted ? (

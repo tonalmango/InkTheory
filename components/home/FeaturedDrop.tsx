@@ -27,8 +27,9 @@ export function FeaturedDrop() {
               background: `linear-gradient(135deg, #D9770620, transparent)`
             }} />
             <div className="absolute left-6 bottom-6 right-6 text-cream">
-              <p className="font-mono text-xs tracking-widest uppercase text-saffron mb-3 font-semibold">Feature Presentation</p>
-              <p className="font-display text-5xl md:text-6xl leading-tight font-bold">SCENE<br />KYA HAI?™</p>
+              <p className="font-mono text-xs tracking-widest uppercase text-saffron mb-3 font-semibold">Limited Drops</p>
+              <p className="font-display text-5xl md:text-6xl leading-tight font-bold">DROP<br />LIVE</p>
+
             </div>
           </motion.div>
 
@@ -49,20 +50,24 @@ export function FeaturedDrop() {
             <div className="relative">
               <div className="inline-flex items-center gap-3 text-saffron mb-6">
                 <Sparkles size={18} />
-                <span className="font-mono text-xs tracking-widest uppercase font-semibold">Indian Internet Culture</span>
+                <span className="font-mono text-xs tracking-widest uppercase font-semibold">Limited Drops</span>
               </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-tight max-w-xl font-bold">
-                Not Another<br />
-                <span className="text-saffron italic">Boring Brand.</span>
+                Don’t
+                <br />
+                Miss Your Size.
               </h2>
               <p className="text-cream/65 leading-relaxed mt-8 max-w-lg font-light text-base">
-                We turn internet culture, Bollywood energy, and everyday Indian experiences into wearable stories. Streetwear that gets it.
+                Small batch prints. Big energy. When it’s gone—yeah, it’s gone.
               </p>
+
             </div>
+
             <div className="relative mt-12 flex flex-col sm:flex-row gap-4">
               <Link href="/shop?featured=true" className="inline-flex items-center justify-center gap-2 bg-saffron text-ink px-8 py-4 font-mono tracking-widest uppercase text-sm font-semibold hover:bg-bollywood transition-colors duration-300">
-                Shop Featured <ArrowRight size={14} />
+                Shop Drops <ArrowRight size={14} />
               </Link>
+
               <Link href="/collections" className="inline-flex items-center justify-center border-2 border-cream/30 text-cream hover:border-saffron hover:text-saffron px-8 py-4 font-mono tracking-widest uppercase text-sm font-semibold transition-colors duration-300">
                 Explore All
               </Link>

@@ -1,15 +1,14 @@
 // app/page.tsx
 import { HeroSection } from '@/components/home/HeroSection'
-import { MarqueeSection } from '@/components/home/MarqueeSection'
 import { FeaturedProducts } from '@/components/home/FeaturedProducts'
-import { CategoryGrid } from '@/components/home/CategoryGrid'
-import { TrendingSection } from '@/components/home/TrendingSection'
-import { AboutTeaser } from '@/components/home/AboutTeaser'
-import { TrustBar } from '@/components/home/TrustBar'
 import { WhyInkTheory } from '@/components/home/WhyInkTheory'
-import { FaqSection } from '@/components/home/FaqSection'
 import { FeaturedDrop } from '@/components/home/FeaturedDrop'
+import { InstagramCommunity } from '@/components/home/InstagramCommunity'
+import { Newsletter } from '@/components/ui/Newsletter'
+
 import { prisma } from '@/lib/prisma'
+
+
 
 export const dynamic = 'force-dynamic'
 
@@ -41,15 +40,13 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <TrustBar />
-      <MarqueeSection />
-      <FeaturedDrop />
       <FeaturedProducts products={featured} />
-      <CategoryGrid />
+      <FeaturedDrop />
       <WhyInkTheory />
-      <TrendingSection products={trending} />
-      <AboutTeaser />
-      <FaqSection />
+      <InstagramCommunity />
+      <Newsletter />
+
     </>
+
   )
 }

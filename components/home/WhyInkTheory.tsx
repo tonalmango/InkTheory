@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 
 const points = [
-  'Indian internet culture, without the cringe',
-  'Bollywood energy, zero copyrighted shortcuts',
-  'Everyday desi chaos, translated into design',
-  'Heavyweight cotton made for repeat wear',
+  '₹999–₹1,999. Fits that make sense.',
+  'Printed oversized tees + hoodies that hold shape.',
+  'Made for college days and late-night scrolls.',
+  'Comfort first. Style always.',
 ]
+
 
 export function WhyInkTheory() {
   return (
@@ -19,13 +20,15 @@ export function WhyInkTheory() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="section-label mb-3">The Point</p>
+          <p className="section-label mb-3">Why InkTheory</p>
           <h2 className="display-heading text-4xl md:text-5xl">
-            Not Another Boring Clothing Brand.
+            Premium fits.
+            <br />Zero corporate energy.
           </h2>
           <p className="text-smoke text-sm md:text-base leading-relaxed mt-5 max-w-lg">
-            We turn internet culture, Bollywood energy and everyday Indian experiences into wearable stories.
+            Streetwear for India—made to look expensive and feel effortless.
           </p>
+
         </motion.div>
 
         <motion.div
@@ -44,8 +47,9 @@ export function WhyInkTheory() {
             ))}
           </div>
           <Link href="/shop" className="inline-flex items-center gap-2 text-sm font-mono tracking-widest uppercase text-ink hover:text-accent transition-colors">
-            Shop the drop <ArrowRight size={14} />
+            Shop Now <ArrowRight size={14} />
           </Link>
+
         </motion.div>
       </div>
     </section>
