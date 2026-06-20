@@ -23,10 +23,13 @@ export function FeaturedDrop() {
               className="object-cover transition-transform duration-700 hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-            style={{
-              background: `linear-gradient(135deg, #0E0B1B20, transparent)`
-            }} />
+            <div
+              className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background: `linear-gradient(135deg, #0E0B1B20, transparent)`,
+              }}
+            />
+
 
             <div className="absolute left-6 bottom-6 right-6 text-cream">
               <p className="font-mono text-xs tracking-widest uppercase text-accent-dark mb-3 font-semibold">Limited Drops</p>
