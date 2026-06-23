@@ -5,6 +5,9 @@ import { BRAND_COLLECTIONS, BRAND_COLLECTIONS_ADDITIONAL } from '@/lib/brand'
 
 const MARQUEE_TEXT = 'TOO ONLINE TO BE NORMAL · MADE FOR THE INDIAN MAIN CHARACTER · JOIN THE CIRCLE · '
 
+const FOOTER_GOLD = 'text-accent'
+
+
 export function Footer() {
   return (
     <footer className="bg-ink text-cream mt-32 border-t-2 border-saffron/30">
@@ -27,7 +30,8 @@ export function Footer() {
               Premium Indian streetwear. Inspired by culture, chaos, memes, and the stories we all live. Not another Scandinavian luxury brand.
             </p>
             <div className="flex gap-5 mt-8">
-              <a href="#" className="text-cream/40 hover:text-saffron transition-colors duration-300 hover:scale-125 transform" aria-label="Instagram">
+              <a href="#" className={`text-cream/40 hover:${FOOTER_GOLD} transition-colors duration-300 hover:scale-125 transform`} aria-label="Instagram">
+
                 <Camera size={20} />
               </a>
               <a href="#" className="text-cream/40 hover:text-saffron transition-colors duration-300 hover:scale-125 transform" aria-label="Community">
