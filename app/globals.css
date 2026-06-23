@@ -27,8 +27,9 @@
   body {
     overflow-x: hidden;
     background:
-      radial-gradient(circle at 12% 8%, rgba(201, 162, 39, 0.06), transparent 24rem),
+      radial-gradient(circle at 12% 8%, rgba(200, 169, 81, 0.06), transparent 24rem),
       linear-gradient(180deg, #F5F0E8 0%, #EFE8DA 100%);
+
   }
 
   body::before {
@@ -95,7 +96,8 @@
   .section-label {
     @apply text-xs tracking-[4px] uppercase text-smoke font-mono;
     text-decoration: underline;
-    text-decoration-color: rgba(201, 162, 39, 0.45);
+    text-decoration-color: rgba(200, 169, 81, 0.45);
+
     text-decoration-thickness: 1px;
     text-underline-offset: 6px;
   }
@@ -130,7 +132,8 @@
   /* Cinema Label with Saffron Accent */
   .cinema-label {
     @apply inline-flex items-center gap-2 border border-ink/15 px-3 py-1.5 text-[10px] font-mono uppercase tracking-[3px] text-smoke;
-    background: linear-gradient(90deg, rgba(14, 11, 27, 0.12), rgba(245, 240, 232, 0.2));
+    background: linear-gradient(90deg, rgba(200, 169, 81, 0.35), rgba(245, 240, 232, 0.2));
+
 
     position: relative;
   }
@@ -164,8 +167,9 @@
 
 
   .stamp-badge.saffron {
-    border-color: #0E0B1B;
-    color: #0E0B1B;
+    border-color: #C8A951;
+    color: #C8A951;
+
 
   }
 
@@ -266,15 +270,17 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(217, 119, 6, 0.4),
+      rgba(200, 169, 81, 0.4),
       transparent
     );
+
     opacity: 0;
     transition: opacity 0.5s ease;
   }
 
   .editorial-card:hover {
-    border-color: rgba(217, 119, 6, 0.35);
+    border-color: rgba(200, 169, 81, 0.35);
+
     box-shadow: 0 16px 48px rgba(10, 10, 10, 0.08);
   }
 
