@@ -12,7 +12,7 @@ export default function NotFound() {
             404
           </span>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <h1 className="font-display text-3xl md:text-4xl text-ink">Bro Took A Wrong Turn.</h1>
+            <h1 className="font-display text-3xl md:text-4xl text-ink">This Page Took A Wrong Turn.</h1>
           </div>
         </div>
 

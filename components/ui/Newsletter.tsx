@@ -37,7 +37,7 @@ export function Newsletter() {
               key="success"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center justify-center gap-2 text-green-600"
+              className="flex items-center justify-center gap-2 text-saffron"
             >
               <CheckCircle2 size={20} />
               <p className="font-mono text-sm tracking-widest">YOU'RE ON THE LIST!</p>

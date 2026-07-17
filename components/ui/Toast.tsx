@@ -36,7 +36,7 @@ export const notify = {
           t.visible ? 'animate-fade-in' : 'opacity-0'
         }`}
       >
-        <Info size={16} className="text-blue-400 flex-shrink-0" />
+        <Info size={16} className="text-bollywood flex-shrink-0" />
         <span className="text-sm font-body">{msg}</span>
       </div>
     )),

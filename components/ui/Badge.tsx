@@ -11,7 +11,7 @@ interface BadgeProps {
 const variants = {
   default:  'bg-ink text-cream',
   accent:   'bg-accent text-ink',
-  success:  'bg-green-50 text-green-700',
+  success:  'bg-bollywood/10 text-bollywood',
   error:    'bg-red-50 text-red-700',
   warning:  'bg-yellow-50 text-yellow-700',
   outline:  'border border-ink/30 text-ink bg-transparent',

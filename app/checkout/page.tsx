@@ -283,13 +283,13 @@ export default function CheckoutPage() {
                     <span>Subtotal</span><span>{formatPrice(subtotal)}</span>
                   </div>
                   {discount > 0 && (
-                    <div className="flex justify-between text-green-600">
+                    <div className="flex justify-between text-saffron">
                       <span>Discount</span><span>-{formatPrice(discount)}</span>
                     </div>
                   )}
                   <div className="flex justify-between text-smoke">
                     <span>Shipping</span>
-                    <span>{shipping === 0 ? <span className="text-green-600">Free</span> : formatPrice(shipping)}</span>
+                    <span>{shipping === 0 ? <span className="text-saffron">Free</span> : formatPrice(shipping)}</span>
                   </div>
                   <div className="flex justify-between text-smoke">
                     <span>GST (18%)</span><span>{formatPrice(tax)}</span>

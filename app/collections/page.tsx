@@ -7,7 +7,7 @@ import { BRAND_COLLECTIONS, BRAND_COLLECTIONS_ADDITIONAL } from '@/lib/brand'
 
 export const metadata: Metadata = {
   title: 'Collections',
-  description: 'Explore InkTheory collections inspired by modern Indian culture, Bollywood energy and everyday desi lore.',
+  description: 'Explore InkTheory collections inspired by modern Indian culture, cinema energy and everyday stories.',
 }
 
 const collections = [

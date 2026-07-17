@@ -1,6 +1,7 @@
 // app/page.tsx
 import { HeroSection } from '@/components/home/HeroSection'
 import { FeaturedProducts } from '@/components/home/FeaturedProducts'
+import { CategoryGrid } from '@/components/home/CategoryGrid'
 import { WhyInkTheory } from '@/components/home/WhyInkTheory'
 import { FeaturedDrop } from '@/components/home/FeaturedDrop'
 import { InstagramCommunity } from '@/components/home/InstagramCommunity'
@@ -40,6 +41,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
+      <CategoryGrid />
       <FeaturedProducts products={featured} />
       <FeaturedDrop />
       <WhyInkTheory />

@@ -56,10 +56,10 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link href="/" className="relative z-10 group">
-              <span className={`font-display text-2xl md:text-3xl tracking-[5px] font-bold transition-all duration-300 ${navTextClass} group-hover:text-saffron`}>
+              <span className={`font-display text-2xl md:text-3xl tracking-[5px] font-bold transition-all duration-300 ${navTextClass} group-hover:text-accent`}>
                 INKTHEORY
               </span>
-              <span className="absolute -bottom-1 left-0 h-0.5 bg-saffron w-0 group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 h-0.5 bg-accent w-0 group-hover:w-full transition-all duration-300" />
             </Link>
 
             {/* Desktop Nav */}
@@ -74,7 +74,7 @@ export function Navbar() {
                   >
                     {link.label}
                     <span
-                      className={`absolute -bottom-1 left-0 h-px bg-saffron transition-all duration-300 ${
+                      className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
                         pathname.startsWith(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
                     />
@@ -87,7 +87,7 @@ export function Navbar() {
             <div className="flex items-center gap-2 md:gap-5">
               <button
                 onClick={() => setSearchOpen(true)}
-                className={`p-2 hover:text-saffron transition-colors duration-300 ${navTextClass}`}
+                className={`p-2 hover:text-accent transition-colors duration-300 ${navTextClass}`}
                 aria-label="Search"
               >
                 <Search size={20} />
@@ -95,7 +95,7 @@ export function Navbar() {
 
               <Link
                 href="/wishlist"
-                className={`p-2 hover:text-saffron transition-colors duration-300 hidden md:block ${navTextClass}`}
+                className={`p-2 hover:text-accent transition-colors duration-300 hidden md:block ${navTextClass}`}
                 aria-label="Wishlist"
               >
                 <Heart size={20} />

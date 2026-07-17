@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { Metadata } from 'next'
 
 export default function AboutPage() {
   return (
@@ -43,7 +42,7 @@ export default function AboutPage() {
 
           <div className="space-y-4">
             {[
-              { q: 'What inspires the drops?', a: 'Indian internet culture, Bollywood references, desi pop culture and everyday experiences.' },
+              { q: 'What inspires the drops?', a: 'Indian internet culture, cinema references, pop culture and everyday experiences.' },
               { q: 'Are these just meme tees?', a: 'No. The references are familiar, but the design language stays premium and wearable.' },
               { q: 'How fast is delivery?', a: 'Most orders ship in 5-7 business days across India after payment confirmation.' },
             ].map(({ q, a }) => (
@@ -74,6 +73,14 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-16 text-center">
+          <div className="mb-8 border border-ink/10 bg-cream-dark/40 p-5 md:p-6 max-w-xl mx-auto text-left">
+            <p className="section-label mb-3">Reach Us</p>
+            <p className="text-sm text-smoke mb-2">Phone</p>
+            <a href="tel:8984178559" className="font-mono text-base md:text-lg text-ink hover:text-accent transition-colors">
+              8984178559
+            </a>
+          </div>
+
           <Link href="/shop" className="btn-primary inline-flex items-center gap-2">
             SHOP THE DROP <ArrowRight size={14} />
           </Link>

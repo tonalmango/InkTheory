@@ -13,6 +13,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { getProductBrandDescription } from '@/lib/brand'
+import { getStorefrontCategory } from '@/lib/storefrontCategories'
 
 interface Props {
   product: Product & { avgRating: number }
@@ -47,6 +48,7 @@ export function ProductClient({ product, related }: Props) {
     ? Math.round(((product.comparePrice! - product.basePrice) / product.comparePrice!) * 100)
     : 0
   const brandDescription = getProductBrandDescription(product)
+  const storefrontCategory = getStorefrontCategory(product)
 
   const handleAddToCart = async () => {
     if (!selectedSize) { toast.error('Please select a size'); return }
@@ -123,7 +125,7 @@ export function ProductClient({ product, related }: Props) {
             <div className="space-y-6">
               {/* Breadcrumb */}
               <p className="text-xs font-mono text-smoke tracking-widest uppercase">
-                {product.category.replace(/_/g, ' ')}
+                {storefrontCategory.title}
               </p>
 
               {/* Title */}
@@ -226,10 +228,10 @@ export function ProductClient({ product, related }: Props) {
 
                 <button onClick={handleWishlist}
                   className={`w-14 h-14 border flex items-center justify-center transition-all ${
-                    isWishlisted ? 'border-red-400 bg-red-50' : 'border-ink/20 hover:border-ink'
+                    isWishlisted ? 'border-vintage-red bg-vintage-red/10' : 'border-ink/20 hover:border-ink'
                   }`}>
                   <motion.div animate={isWishlisted ? { scale: [1, 1.4, 1] } : {}}>
-                    <Heart size={18} className={isWishlisted ? 'fill-red-500 text-red-500' : 'text-ink'} />
+                    <Heart size={18} className={isWishlisted ? 'fill-vintage-red text-vintage-red' : 'text-ink'} />
                   </motion.div>
                 </button>
 

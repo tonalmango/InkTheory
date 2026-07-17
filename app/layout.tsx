@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   description:
     'Modern Indian streetwear inspired by culture, chaos, Bollywood energy and everyday stories.',
-  keywords: ['streetwear', 'indian streetwear', 'desi culture', 'bollywood', 'internet culture', 'graphic tees', 'india'],
+  keywords: ['streetwear', 'indian streetwear', 'Indian culture', 'cinema', 'internet culture', 'graphic tees', 'india'],
   openGraph: {
     title: 'INKTHEORY | Too Online To Be Normal',
     description: 'Modern Indian streetwear inspired by culture, chaos and everyday stories.',

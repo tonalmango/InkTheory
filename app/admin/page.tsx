@@ -33,9 +33,9 @@ export default async function AdminPage() {
   ])
 
   const stats = [
-    { icon: Package, label: 'Total Orders', value: totalOrders.toString(), color: 'text-blue-600' },
-    { icon: Users, label: 'Customers', value: totalUsers.toString(), color: 'text-green-600' },
-    { icon: ShoppingBag, label: 'Active Products', value: totalProducts.toString(), color: 'text-purple-600' },
+    { icon: Package, label: 'Total Orders', value: totalOrders.toString(), color: 'text-saffron' },
+    { icon: Users, label: 'Customers', value: totalUsers.toString(), color: 'text-bollywood' },
+    { icon: ShoppingBag, label: 'Active Products', value: totalProducts.toString(), color: 'text-vintage-red' },
     {
       icon: TrendingUp,
       label: 'Total Revenue',

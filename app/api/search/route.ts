@@ -9,6 +9,9 @@ export async function GET(req: NextRequest) {
 
   const { searchParams } = new URL(req.url)
   const q = searchParams.get('q')?.trim()
+  const normalizedTag = q?.toLowerCase()
+  const dashedTag = normalizedTag?.replace(/\s+/g, '-')
+  const isTrendingSearch = normalizedTag === 'trending'
 
   if (!q || q.length < 2) {
     return NextResponse.json({ products: [] })
@@ -18,12 +21,16 @@ export async function GET(req: NextRequest) {
     const products = await prisma.product.findMany({
       where: {
         isActive: true,
-        OR: [
-          { name: { contains: q, mode: 'insensitive' } },
-          { description: { contains: q, mode: 'insensitive' } },
-          { tags: { hasSome: [q.toLowerCase()] } },
-          { category: { equals: q.toUpperCase() as any } },
-        ],
+        ...(isTrendingSearch
+          ? { isTrending: true }
+          : {
+              OR: [
+                { name: { contains: q, mode: 'insensitive' } },
+                { description: { contains: q, mode: 'insensitive' } },
+                { tags: { hasSome: [normalizedTag, dashedTag].filter(Boolean) as string[] } },
+                { category: { equals: q.toUpperCase() as any } },
+              ],
+            }),
       },
       select: {
         id: true,

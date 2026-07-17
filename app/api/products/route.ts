@@ -15,6 +15,8 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const category = searchParams.get('category') as Category | null
   const search = searchParams.get('q')
+  const normalizedSearch = search?.toLowerCase()
+  const dashedSearch = normalizedSearch?.replace(/\s+/g, '-')
   const tags = searchParams.get('tags')?.split(',').filter(Boolean)
   const minPrice = Number(searchParams.get('minPrice')) || 0
   const maxPrice = Number(searchParams.get('maxPrice')) || 99999
@@ -34,7 +36,7 @@ export async function GET(req: NextRequest) {
       OR: [
         { name: { contains: search, mode: 'insensitive' } },
         { description: { contains: search, mode: 'insensitive' } },
-        { tags: { hasSome: [search] } },
+        { tags: { hasSome: [search, normalizedSearch, dashedSearch].filter(Boolean) as string[] } },
       ],
     }),
     ...(tags?.length && { tags: { hasSome: tags } }),

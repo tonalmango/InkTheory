@@ -185,7 +185,7 @@ export function ReviewSection({ productId, reviews, avgRating, totalReviews }: P
                   <div className="flex items-center gap-2 flex-wrap">
                     <p className="text-sm font-medium">{review.user?.name || 'Customer'}</p>
                     {review.isVerified && (
-                      <span className="text-[10px] font-mono bg-green-50 text-green-600 px-1.5 py-0.5">
+                      <span className="text-[10px] font-mono bg-bollywood/10 text-bollywood px-1.5 py-0.5">
                         ✓ Verified Purchase
                       </span>
                     )}

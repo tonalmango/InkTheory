@@ -38,11 +38,11 @@ export default async function OrderDetailPage({
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {/* Success banner */}
         {isSuccess && (
-          <div className="bg-green-50 border border-green-200 p-4 mb-8 flex items-center gap-3">
-            <CheckCircle2 size={20} className="text-green-600 flex-shrink-0" />
+          <div className="bg-bollywood/10 border border-bollywood/30 p-4 mb-8 flex items-center gap-3">
+            <CheckCircle2 size={20} className="text-bollywood flex-shrink-0" />
             <div>
-              <p className="text-sm font-medium text-green-800">Order placed successfully!</p>
-              <p className="text-xs text-green-600 mt-0.5">
+              <p className="text-sm font-medium text-ink">Order placed successfully!</p>
+              <p className="text-xs text-smoke mt-0.5">
                 You'll receive a confirmation email shortly. Your order is being submitted to our fulfillment partner.
               </p>
             </div>
@@ -118,7 +118,7 @@ export default async function OrderDetailPage({
                 <span>Subtotal</span><span>{formatPrice(order.subtotal)}</span>
               </div>
               {order.discount > 0 && (
-                <div className="flex justify-between text-green-600">
+                <div className="flex justify-between text-saffron">
                   <span>Discount</span><span>-{formatPrice(order.discount)}</span>
                 </div>
               )}

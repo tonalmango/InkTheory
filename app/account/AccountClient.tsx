@@ -3,12 +3,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Package, MapPin, Heart, LogOut, ChevronRight, ShoppingBag } from 'lucide-react'
+import { Package, MapPin, Heart, LogOut, ChevronRight, ShoppingBag, LayoutDashboard } from 'lucide-react'
 import { formatPrice, formatDate, orderStatusColor, orderStatusLabel } from '@/lib/utils'
 import { signOut } from 'next-auth/react'
 
 interface Props {
-  user: { id: string; name?: string | null; email?: string | null; image?: string | null }
+  user: { id: string; name?: string | null; email?: string | null; image?: string | null; role?: string | null }
   orders: any[]
   addresses: any[]
 }
@@ -32,16 +32,26 @@ export function AccountClient({ user, orders, addresses }: Props) {
               <p className="text-smoke text-sm">{user.email}</p>
             </div>
           </div>
-          <button onClick={() => signOut({ callbackUrl: '/' })}
-            className="flex items-center gap-2 text-sm text-smoke hover:text-ink transition-colors font-mono">
-            <LogOut size={14} /> Sign Out
-          </button>
+          <div className="flex items-center gap-3">
+            {user.role === 'ADMIN' && (
+              <Link href="/admin" className="btn-secondary inline-flex items-center gap-2 text-xs py-2.5">
+                <LayoutDashboard size={14} /> Admin Dashboard
+              </Link>
+            )}
+            <button onClick={() => signOut({ callbackUrl: '/' })}
+              className="flex items-center gap-2 text-sm text-smoke hover:text-ink transition-colors font-mono">
+              <LogOut size={14} /> Sign Out
+            </button>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {/* Quick links */}
           <div className="space-y-3">
             {[
+              ...(user.role === 'ADMIN'
+                ? [{ icon: LayoutDashboard, label: 'Admin Dashboard', href: '/admin' }]
+                : []),
               { icon: Package, label: 'My Orders', href: '/account/orders', count: orders.length },
               { icon: Heart, label: 'Wishlist', href: '/wishlist' },
               { icon: MapPin, label: 'Addresses', href: '/account/addresses', count: addresses.length },

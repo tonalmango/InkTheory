@@ -65,14 +65,112 @@ function getImages(item: any): string[] {
   return typeof images === 'string' ? [images] : []
 }
 
-function parseVariantName(variant: any) {
-  const source = `${variant?.sku || variant?.name || variant?.title || ''}`
-  const sizeMatch = source.match(/\b(XS|S|M|L|XL|XXL|XXXL)\b/i)
-  const color = variant?.color || variant?.colour || variant?.color_name || 'Default'
-  return {
-    size: String(variant?.size || variant?.size_name || sizeMatch?.[1] || 'One Size').toUpperCase(),
-    color: String(color),
+function readString(...values: any[]): string {
+  for (const value of values) {
+    if (typeof value === 'string' && value.trim()) return value.trim()
+    if (typeof value === 'number') return String(value)
+    if (value && typeof value === 'object') {
+      const nested = readString(value.name, value.title, value.label, value.value)
+      if (nested) return nested
+    }
   }
+  return ''
+}
+
+function parseVariantName(variant: any) {
+  const source = readString(
+    variant?.sku,
+    variant?.name,
+    variant?.title,
+    variant?.variant_name,
+    variant?.product_name,
+    variant?.option,
+    variant?.options
+  )
+  const sizeMatch = source.match(/\b(XS|S|M|L|XL|XXL|XXXL)\b/i)
+  const color = readString(
+    variant?.color,
+    variant?.colour,
+    variant?.color_name,
+    variant?.colour_name,
+    variant?.Color,
+    variant?.attributes?.color,
+    variant?.attributes?.colour
+  )
+  return {
+    size: readString(
+      variant?.size,
+      variant?.size_name,
+      variant?.Size,
+      variant?.attributes?.size,
+      sizeMatch?.[1],
+      'One Size'
+    ).toUpperCase(),
+    color: color || 'Default',
+  }
+}
+
+function buildVariantData(variantsData: any[], product: any): Array<{
+  printroveSkuId: string
+  size: string
+  color: string
+  colorHex: string | null
+  stock: number
+  price: number
+  isAvailable: boolean
+}> {
+  const unique = new Map<string, any>()
+
+  for (const variant of variantsData) {
+    const parsed = parseVariantName(variant)
+    const key = `${parsed.size.toLowerCase()}::${parsed.color.toLowerCase()}`
+    const next = {
+      printroveSkuId: getId(variant),
+      size: parsed.size,
+      color: parsed.color,
+      colorHex: variant.color_hex || variant.hex || null,
+      stock: Number(variant.stock || variant.quantity || 100),
+      price: Number(variant.price || variant.selling_price || variant.retail_price || product.price || 1000),
+      isAvailable: variant.is_available !== false,
+    }
+
+    const current = unique.get(key)
+    if (!current || (!current.printroveSkuId && next.printroveSkuId) || (!current.isAvailable && next.isAvailable)) {
+      unique.set(key, next)
+    }
+  }
+
+  return [...unique.values()]
+}
+
+async function syncProductVariants(
+  productId: string,
+  variantsData: ReturnType<typeof buildVariantData>
+) {
+  await Promise.all(
+    variantsData.map((variant) =>
+      prisma.productVariant.upsert({
+        where: {
+          productId_size_color: {
+            productId,
+            size: variant.size,
+            color: variant.color,
+          },
+        },
+        create: {
+          productId,
+          ...variant,
+        },
+        update: {
+          printroveSkuId: variant.printroveSkuId || null,
+          colorHex: variant.colorHex,
+          stock: variant.stock,
+          price: variant.price,
+          isAvailable: variant.isAvailable,
+        },
+      })
+    )
+  )
 }
 
 export async function syncPrintroveProducts(): Promise<{
@@ -118,7 +216,7 @@ export async function syncPrintroveProducts(): Promise<{
 
         try {
           const variantsResponse = await printroveClient.getProductVariants(categoryId, parentSku)
-          const variantsData = toArray(variantsResponse)
+          const variantsData = buildVariantData(toArray(variantsResponse), product)
           const name = product.name || product.title || `Printrove Product ${productId}`
           const isExisting = existingPrintroveIds.has(productId)
           const slug = isExisting
@@ -128,7 +226,7 @@ export async function syncPrintroveProducts(): Promise<{
           if (!isExisting) existingSlugs.add(slug)
 
           const images = getImages(product)
-          await prisma.product.upsert({
+          const syncedProduct = await prisma.product.upsert({
             where: { printroveId: productId },
             create: {
               printroveId: productId,
@@ -143,18 +241,7 @@ export async function syncPrintroveProducts(): Promise<{
               mockupImages: images,
               isActive: true,
               variants: {
-                create: variantsData.map((variant: any) => {
-                  const parsed = parseVariantName(variant)
-                  return {
-                    printroveSkuId: getId(variant),
-                    size: parsed.size,
-                    color: parsed.color,
-                    colorHex: variant.color_hex || variant.hex || null,
-                    stock: Number(variant.stock || variant.quantity || 100),
-                    price: Number(variant.price || variant.selling_price || product.price || 1000),
-                    isAvailable: variant.is_available !== false,
-                  }
-                }),
+                create: variantsData,
               },
               sizeChart: { create: { data: generateDefaultSizeChart(product.category || category.name || '') } },
             },
@@ -168,6 +255,7 @@ export async function syncPrintroveProducts(): Promise<{
               updatedAt: new Date(),
             },
           })
+          await syncProductVariants(syncedProduct.id, variantsData)
 
           synced++
         } catch (err: any) {
@@ -216,7 +304,7 @@ async function syncPrintroveProductLibrary(): Promise<{
         try {
           const detail = await printroveClient.getLibraryProduct(productId).catch(() => product)
           const source = detail?.data || detail?.product || detail
-          const variantsData = toArray(source?.variants || source?.product_variants || source?.skus || source)
+          const variantsData = buildVariantData(toArray(source?.variants || source?.product_variants || source?.skus || source), source)
           const name = source.name || source.title || product.name || product.title || `Printrove Product ${productId}`
           const isExisting = existingPrintroveIds.has(productId)
           const slug = isExisting
@@ -227,7 +315,7 @@ async function syncPrintroveProductLibrary(): Promise<{
 
           const images = getImages(source).length ? getImages(source) : getImages(product)
 
-          await prisma.product.upsert({
+          const syncedProduct = await prisma.product.upsert({
             where: { printroveId: productId },
             create: {
               printroveId: productId,
@@ -242,18 +330,7 @@ async function syncPrintroveProductLibrary(): Promise<{
               mockupImages: images,
               isActive: true,
               variants: {
-                create: variantsData.map((variant: any) => {
-                  const parsed = parseVariantName(variant)
-                  return {
-                    printroveSkuId: getId(variant),
-                    size: parsed.size,
-                    color: parsed.color,
-                    colorHex: variant.color_hex || variant.hex || null,
-                    stock: Number(variant.stock || variant.quantity || 100),
-                    price: Number(variant.price || variant.selling_price || variant.retail_price || source.price || 1000),
-                    isAvailable: variant.is_available !== false,
-                  }
-                }),
+                create: variantsData,
               },
               sizeChart: { create: { data: generateDefaultSizeChart(source.category || source.category_name || '') } },
             },
@@ -267,6 +344,7 @@ async function syncPrintroveProductLibrary(): Promise<{
               updatedAt: new Date(),
             },
           })
+          await syncProductVariants(syncedProduct.id, variantsData)
 
           synced++
         } catch (err: any) {

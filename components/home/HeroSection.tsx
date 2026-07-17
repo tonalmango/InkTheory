@@ -48,9 +48,12 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
         >
-          <p className="cinema-label border-cream/25 text-cream/70 mb-8 md:mb-10">
-            Premium streetwear for the Indian feed
-          </p>
+          <div className="mb-8 md:mb-10 inline-flex max-w-full items-center gap-3 border border-cream/20 bg-ink/60 px-4 py-3 text-cream shadow-cinematic backdrop-blur-md">
+            <span className="h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
+            <span className="font-mono text-[10px] uppercase tracking-[3px] text-cream/80 sm:tracking-[5px]">
+              Premium Streetwear For The Indian Feed
+            </span>
+          </div>
 
           <h1 className="cinema-title text-cream leading-[0.92] mb-8 max-w-5xl">
             WEAR WHAT YOUR FEED
@@ -65,7 +68,7 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <Link
               href="/shop"
-              className="group inline-flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-accent-dark hover:text-ink transition-all duration-300 relative overflow-hidden"
+              className="group inline-flex items-center gap-3 bg-cream text-ink px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-accent hover:text-ink transition-all duration-300 relative overflow-hidden"
 
             >
               <span className="relative z-10 flex items-center gap-3">

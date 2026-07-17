@@ -24,7 +24,7 @@ export default function CartPage() {
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <ShoppingBag size={48} className="text-mist mb-4" />
-            <p className="text-smoke font-mono text-sm tracking-widest mb-6">Bhai, cart toh bhar le.</p>
+            <p className="text-smoke font-mono text-sm tracking-widest mb-6">Your cart is empty. Start with the first piece.</p>
             <Link href="/shop" className="btn-primary text-xs">CONTINUE SHOPPING</Link>
           </div>
         ) : (
@@ -96,7 +96,7 @@ export default function CartPage() {
                     <span>Shipping</span>
                     <span>
                       {shipping === 0
-                        ? <span className="text-green-600">Free</span>
+                        ? <span className="text-saffron">Free</span>
                         : formatPrice(shipping)}
                     </span>
                   </div>

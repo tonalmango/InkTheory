@@ -7,16 +7,7 @@ import { SlidersHorizontal, X, ChevronDown } from 'lucide-react'
 import { ProductCard } from '@/components/product/ProductCard'
 import { Product } from '@/types'
 import { categoryLabel } from '@/lib/utils'
-
-const CATEGORIES = [
-  { value: '', label: 'All Products' },
-  { value: 'PRINTED_TSHIRT', label: 'Printed Tees' },
-  { value: 'OVERSIZED_TEE', label: 'Oversized Fits' },
-  { value: 'HOODIE', label: 'Hoodies' },
-  { value: 'SWEATSHIRT', label: 'Sweatshirts' },
-  { value: 'CAP', label: 'Caps' },
-  { value: 'ACCESSORY', label: 'Accessories' },
-]
+import { STOREFRONT_CATEGORIES } from '@/lib/storefrontCategories'
 
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest First' },
@@ -37,9 +28,13 @@ export function ShopClient() {
   const [filtersOpen, setFiltersOpen] = useState(false)
 
   const category = searchParams.get('category') || ''
+  const tags = searchParams.get('tags') || ''
   const sort = searchParams.get('sort') || 'newest'
   const q = searchParams.get('q') || ''
   const trending = searchParams.get('trending') === 'true'
+  const activeStorefrontCategory = trending
+    ? STOREFRONT_CATEGORIES[0]
+    : STOREFRONT_CATEGORIES.find((cat) => cat.key === tags)
 
   const updateParam = useCallback(
     (key: string, value: string) => {
@@ -53,11 +48,50 @@ export function ShopClient() {
     [searchParams, router, pathname]
   )
 
+  const updateStorefrontCategory = useCallback(
+    (value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.delete('category')
+      params.delete('tags')
+      params.delete('trending')
+      params.delete('q')
+      params.delete('page')
+
+      if (value === 'trending') params.set('trending', 'true')
+      else params.set('tags', value)
+
+      router.push(`${pathname}?${params.toString()}`, { scroll: false })
+      setPage(1)
+    },
+    [searchParams, router, pathname]
+  )
+
+  const clearStorefrontCategory = useCallback(() => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('tags')
+    params.delete('trending')
+    params.delete('page')
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+    setPage(1)
+  }, [searchParams, router, pathname])
+
+  const clearFilters = useCallback(() => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('category')
+    params.delete('tags')
+    params.delete('trending')
+    params.delete('q')
+    params.delete('page')
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+    setPage(1)
+  }, [searchParams, router, pathname])
+
   const fetchProducts = useCallback(async () => {
     setLoading(true)
     try {
       const params = new URLSearchParams({
         ...(category && { category }),
+        ...(tags && { tags }),
         ...(sort && { sort }),
         ...(q && { q }),
         ...(trending && { trending: 'true' }),
@@ -81,7 +115,7 @@ export function ShopClient() {
     } finally {
       setLoading(false)
     }
-  }, [category, sort, q, trending, page])
+  }, [category, tags, sort, q, trending, page])
 
   useEffect(() => {
     fetchProducts()
@@ -92,12 +126,12 @@ export function ShopClient() {
       {/* Page header */}
       <div className="mb-8">
         <p className="section-label mb-2">
-          {q ? `Search: "${q}"` : category ? categoryLabel(category) : 'All Products'}
+          {q ? `Search: "${q}"` : activeStorefrontCategory ? activeStorefrontCategory.title : category ? categoryLabel(category) : 'All Products'}
         </p>
         <h1 className="display-heading text-3xl md:text-4xl">
-          {q ? 'Search Results' : trending ? 'Trending Now' : category ? categoryLabel(category) : 'Shop All'}
+          {q ? 'Search Results' : activeStorefrontCategory ? activeStorefrontCategory.title : category ? categoryLabel(category) : 'Shop All'}
         </h1>
-        {!q && !trending && !category && (
+        {!q && !trending && !category && !tags && (
           <p className="text-smoke text-sm mt-3 max-w-xl">
             Streetwear inspired by modern Indian culture.
           </p>
@@ -111,20 +145,20 @@ export function ShopClient() {
           <div>
             <p className="text-xs font-mono tracking-[3px] uppercase text-smoke mb-4">Category</p>
             <ul className="space-y-2">
-              {CATEGORIES.map((cat) => (
-                <li key={cat.value}>
+              {STOREFRONT_CATEGORIES.map((cat) => (
+                <li key={cat.key}>
                   <button
-                    onClick={() => updateParam('category', cat.value)}
+                    onClick={() => updateStorefrontCategory(cat.key)}
                     className={`text-sm transition-colors w-full text-left py-1 ${
-                      category === cat.value
+                      activeStorefrontCategory?.key === cat.key
                         ? 'text-ink font-medium'
                         : 'text-smoke hover:text-ink'
                     }`}
                   >
-                    {category === cat.value && (
+                    {activeStorefrontCategory?.key === cat.key && (
                       <span className="inline-block w-3 h-px bg-accent mr-2 align-middle" />
                     )}
-                    {cat.label}
+                    {cat.title}
                   </button>
                 </li>
               ))}
@@ -172,8 +206,16 @@ export function ShopClient() {
           </div>
 
           {/* Active filters */}
-          {(category || q) && (
+          {(category || q || tags || trending) && (
             <div className="flex flex-wrap gap-2 mb-6">
+              {activeStorefrontCategory && (
+                <button
+                  onClick={clearStorefrontCategory}
+                  className="flex items-center gap-1 text-xs font-mono bg-ink text-cream px-3 py-1.5"
+                >
+                  {activeStorefrontCategory.title} <X size={11} />
+                </button>
+              )}
               {category && (
                 <button
                   onClick={() => updateParam('category', '')}
@@ -207,7 +249,7 @@ export function ShopClient() {
           ) : products.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-smoke font-mono text-sm tracking-widest">NO PRODUCTS FOUND</p>
-              <button onClick={() => { updateParam('category', ''); updateParam('q', '') }}
+              <button onClick={clearFilters}
                 className="mt-4 text-sm text-accent underline underline-offset-4">
                 Clear filters
               </button>
@@ -259,13 +301,13 @@ export function ShopClient() {
                 <div>
                   <p className="text-xs font-mono tracking-[3px] uppercase text-smoke mb-3">Category</p>
                   <div className="flex flex-wrap gap-2">
-                    {CATEGORIES.map((cat) => (
-                      <button key={cat.value}
-                        onClick={() => { updateParam('category', cat.value); setFiltersOpen(false) }}
+                    {STOREFRONT_CATEGORIES.map((cat) => (
+                      <button key={cat.key}
+                        onClick={() => { updateStorefrontCategory(cat.key); setFiltersOpen(false) }}
                         className={`px-4 py-2 text-xs font-mono border transition-colors ${
-                          category === cat.value ? 'bg-ink text-cream border-ink' : 'border-ink/20 text-smoke'
+                          activeStorefrontCategory?.key === cat.key ? 'bg-ink text-cream border-ink' : 'border-ink/20 text-smoke'
                         }`}>
-                        {cat.label}
+                        {cat.title}
                       </button>
                     ))}
                   </div>

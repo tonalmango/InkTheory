@@ -54,7 +54,7 @@ export function CartDrawer() {
                     className="flex flex-col items-center justify-center h-full text-center gap-4 py-20"
                   >
                     <ShoppingBag size={40} className="text-mist" />
-                    <p className="text-smoke font-mono text-sm tracking-widest">Bhai, cart toh bhar le.</p>
+                    <p className="text-smoke font-mono text-sm tracking-widest">Your cart is empty. Start with the first piece.</p>
                     <Link
                       href="/shop"
                       onClick={closeCart}

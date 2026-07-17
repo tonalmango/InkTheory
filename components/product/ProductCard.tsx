@@ -10,6 +10,7 @@ import { useCartStore } from '@/store/cartStore'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import { getStorefrontCategory } from '@/lib/storefrontCategories'
 
 interface ProductCardProps {
   product: Product
@@ -29,6 +30,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     : 0
   const defaultVariant = product.variants[0]
   const href = `/product/${product.slug}`
+  const storefrontCategory = getStorefrontCategory(product)
 
   const handleWishlist = async () => {
     if (!session) {
@@ -168,7 +170,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
 
       <div className="mt-4 space-y-2 px-0.5">
         <p className="text-[10px] text-smoke font-mono tracking-widest uppercase font-semibold">
-          {product.category.replace(/_/g, ' ')}
+          {storefrontCategory.title}
         </p>
         <Link href={href} className="block group/title">
           <h3 className="text-sm font-medium text-ink group-hover/title:text-saffron transition-colors line-clamp-2 leading-tight">

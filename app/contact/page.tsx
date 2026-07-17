@@ -39,7 +39,7 @@ export default function ContactPage() {
           <p className="section-label mb-3">Need Something?</p>
           <h1 className="display-heading text-4xl md:text-5xl">Talk To Us.</h1>
           <p className="text-smoke mt-3 max-w-md">
-            Order doubt? Collab idea? Something went full kalesh? Send it here.
+            Order question? Collaboration idea? Something not working? Send it here.
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export default function ContactPage() {
             {sent ? (
               <motion.div className="flex flex-col items-center text-center py-12"
                 initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-                <CheckCircle size={48} className="text-green-500 mb-4" />
+                <CheckCircle size={48} className="text-saffron mb-4" />
                 <h3 className="font-display text-2xl mb-2">Message Sent.</h3>
                 <p className="text-smoke">We'll reply within 24 business hours.</p>
                 <button
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 {[
                   { key: 'name', label: 'Your Name', type: 'text', placeholder: 'John Doe' },
                   { key: 'email', label: 'Email Address', type: 'email', placeholder: 'you@example.com' },
-                  { key: 'subject', label: 'Subject', type: 'text', placeholder: 'Order #, collab idea, kalesh report' },
+                  { key: 'subject', label: 'Subject', type: 'text', placeholder: 'Order #, collaboration idea, support request' },
                 ].map(({ key, label, type, placeholder }) => (
                   <div key={key}>
                     <label className="text-xs font-mono text-smoke tracking-widest uppercase block mb-2">{label}</label>
@@ -132,7 +132,7 @@ export default function ContactPage() {
               <p className="section-label mb-3">Business Hours</p>
               <p className="text-sm text-smoke">Monday - Saturday: 10am - 7pm IST</p>
               <p className="text-sm text-smoke">Sundays: 12pm - 5pm IST</p>
-              <p className="text-sm text-smoke mt-2">We typically respond within 24 hours. Group chat speed, almost.</p>
+              <p className="text-sm text-smoke mt-2">We typically respond within 24 hours.</p>
             </div>
           </div>
         </div>

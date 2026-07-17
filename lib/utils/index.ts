@@ -59,11 +59,11 @@ export function orderStatusLabel(status: string): string {
 
 export function orderStatusColor(status: string): string {
   const colors: Record<string, string> = {
-    PENDING: 'text-yellow-600 bg-yellow-50',
-    CONFIRMED: 'text-blue-600 bg-blue-50',
-    PROCESSING: 'text-purple-600 bg-purple-50',
-    SHIPPED: 'text-indigo-600 bg-indigo-50',
-    DELIVERED: 'text-green-600 bg-green-50',
+    PENDING: 'text-saffron bg-saffron/10',
+    CONFIRMED: 'text-bollywood bg-bollywood/10',
+    PROCESSING: 'text-saffron bg-saffron/10',
+    SHIPPED: 'text-royal-blue bg-royal-blue/10',
+    DELIVERED: 'text-bollywood bg-bollywood/10',
     CANCELLED: 'text-red-600 bg-red-50',
     REFUNDED: 'text-gray-600 bg-gray-50',
   }

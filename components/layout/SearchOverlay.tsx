@@ -1,4 +1,3 @@
-// components/layout/SearchOverlay.tsx
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -20,6 +19,8 @@ interface SearchResult {
   basePrice: number
   category: string
 }
+
+const popularSearches = ['Trending', 'Pop Culture', 'Couple', 'Comic']
 
 export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
   const [query, setQuery] = useState('')
@@ -77,51 +78,51 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 bg-cream/98 backdrop-blur-sm"
+          className="fixed inset-0 z-50 bg-ink/35 backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="max-w-2xl mx-auto px-4 pt-24">
-            {/* Close button */}
+          <div className="max-w-3xl mx-auto px-4 pt-24">
+            <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-cream/98 shadow-2xl px-5 sm:px-8 py-8 sm:py-10">
+              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(200,169,81,0.12),transparent_38%),radial-gradient(circle_at_bottom_left,rgba(10,10,10,0.04),transparent_34%)]" />
+
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 p-2 text-smoke hover:text-ink transition-colors"
+              className="absolute top-4 right-4 sm:top-5 sm:right-5 z-10 flex items-center justify-center w-10 h-10 rounded-full border border-ink/10 bg-cream text-ink hover:text-accent hover:border-accent transition-colors shadow-sm"
             >
               <X size={24} />
             </button>
 
-            {/* Input */}
-            <div className="relative border-b-2 border-ink/20 focus-within:border-ink transition-colors pb-4">
+            <div className="relative border-b-2 border-ink/25 focus-within:border-accent transition-colors pb-4 z-10">
               <Search
                 size={20}
-                className="absolute left-0 top-1/2 -translate-y-1/2 text-smoke"
+                className="absolute left-0 top-1/2 -translate-y-1/2 text-accent"
               />
               <input
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search lore, drops, chaos…"
-                className="w-full pl-8 bg-transparent text-2xl md:text-3xl font-display text-ink placeholder:text-mist focus:outline-none"
+                placeholder="Search collections, drops, stories..."
+                className="w-full pl-8 bg-transparent text-2xl md:text-3xl font-display text-ink placeholder:text-smoke focus:outline-none"
               />
             </div>
 
-            {/* Results */}
             <AnimatePresence>
               {results.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
-                  className="mt-8 space-y-2"
+                  className="mt-8 space-y-2 relative z-10"
                 >
                   {results.map((product) => (
                     <Link
                       key={product.id}
                       href={`/product/${product.slug}`}
                       onClick={onClose}
-                      className="flex items-center gap-4 p-4 hover:bg-cream-dark transition-colors rounded-sm group"
+                      className="flex items-center gap-4 p-4 bg-cream-dark/40 hover:bg-cream-dark transition-colors rounded-2xl border border-ink/5 group"
                     >
                       <div className="w-14 h-14 bg-cream-dark rounded overflow-hidden flex-shrink-0">
                         {product.images[0] && (
@@ -140,7 +141,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                       </div>
                       <ArrowRight
                         size={16}
-                        className="text-smoke group-hover:text-ink transition-colors flex-shrink-0"
+                        className="text-smoke group-hover:text-accent transition-colors flex-shrink-0"
                       />
                     </Link>
                   ))}
@@ -148,7 +149,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                   <Link
                     href={`/shop?q=${encodeURIComponent(query)}`}
                     onClick={onClose}
-                    className="flex items-center justify-center gap-2 py-4 text-sm text-accent tracking-widest uppercase font-mono hover:text-accent-dark transition-colors"
+                    className="flex items-center justify-center gap-2 py-4 text-sm text-accent tracking-widest uppercase font-mono hover:text-accent-light transition-colors"
                   >
                     View all results <ArrowRight size={14} />
                   </Link>
@@ -159,23 +160,22 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="mt-8 text-smoke text-center"
+                  className="mt-8 text-smoke text-center relative z-10"
                 >
                   No results for "{query}"
                 </motion.p>
               )}
             </AnimatePresence>
 
-            {/* Quick links */}
             {!query && (
-              <div className="mt-12">
+              <div className="mt-12 relative z-10">
                 <p className="section-label mb-4">Popular Searches</p>
                 <div className="flex flex-wrap gap-2">
-                  {['Scene Kya Hai', 'Bollywood Brainrot', 'Aukaat Pending', 'Desi Lore', 'Setting Ho Jayega'].map((term) => (
+                  {popularSearches.map((term) => (
                     <button
                       key={term}
                       onClick={() => setQuery(term)}
-                      className="px-4 py-2 border border-ink/20 text-sm text-smoke hover:border-ink hover:text-ink transition-colors"
+                      className="rounded-full border border-ink/20 bg-cream px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-cream focus-visible:border-accent focus-visible:outline-none"
                     >
                       {term}
                     </button>
@@ -183,6 +183,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                 </div>
               </div>
             )}
+            </div>
           </div>
         </motion.div>
       )}

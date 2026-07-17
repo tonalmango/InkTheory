@@ -37,7 +37,7 @@ export function InstagramCommunity() {
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-mono tracking-widest uppercase text-cream/80 hover:text-saffron transition-colors duration-300"
+              className="inline-flex items-center gap-2 text-sm font-mono tracking-widest uppercase text-ink hover:text-accent transition-colors duration-300"
             >
               Follow @inktheory
               <ArrowUpRight size={14} />
