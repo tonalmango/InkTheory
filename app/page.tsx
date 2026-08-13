@@ -18,21 +18,26 @@ async function getHomeData() {
     return { featured: [], trending: [] }
   }
 
-  const [featured, trending] = await Promise.all([
-    prisma.product.findMany({
-      where: { isActive: true, isFeatured: true },
-      include: { variants: { where: { isAvailable: true } } },
-      take: 8,
-      orderBy: { createdAt: 'desc' },
-    }),
-    prisma.product.findMany({
-      where: { isActive: true, isTrending: true },
-      include: { variants: { where: { isAvailable: true } } },
-      take: 4,
-    }),
-  ])
+  try {
+    const [featured, trending] = await Promise.all([
+      prisma.product.findMany({
+        where: { isActive: true, isFeatured: true },
+        include: { variants: { where: { isAvailable: true } } },
+        take: 8,
+        orderBy: { createdAt: 'desc' },
+      }),
+      prisma.product.findMany({
+        where: { isActive: true, isTrending: true },
+        include: { variants: { where: { isAvailable: true } } },
+        take: 4,
+      }),
+    ])
 
-  return { featured, trending }
+    return { featured, trending }
+  } catch (error) {
+    console.error('[Home Data Error]', error)
+    return { featured: [], trending: [] }
+  }
 }
 
 export default async function HomePage() {
