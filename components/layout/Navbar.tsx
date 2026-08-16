@@ -11,7 +11,6 @@ import { SearchOverlay } from './SearchOverlay'
 
 const NAV_LINKS = [
   { label: 'Shop', href: '/shop' },
-  { label: 'Drops', href: '/collections' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 

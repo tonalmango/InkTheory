@@ -30,7 +30,7 @@ export function FeaturedDrop() {
               src={leftImage}
               alt="InkTheory featured streetwear drop"
               fill
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="object-cover scale-110 transition-transform duration-700 hover:scale-[1.14]"
               sizes="(max-width: 1024px) 100vw, 50vw"
               unoptimized
               onError={() => setLeftImage(featuredDropImages.fallback)}
@@ -98,7 +98,7 @@ export function FeaturedDrop() {
                 Shop Drops <ArrowRight size={14} />
               </Link>
 
-              <Link href="/collections" className="inline-flex items-center justify-center border-2 border-cream/30 text-cream hover:border-accent-dark hover:text-cream px-8 py-4 font-mono tracking-widest uppercase text-sm font-semibold transition-colors duration-300">
+              <Link href="/shop" className="inline-flex items-center justify-center border-2 border-cream/30 text-cream hover:border-accent-dark hover:text-cream px-8 py-4 font-mono tracking-widest uppercase text-sm font-semibold transition-colors duration-300">
 
                 Explore All
               </Link>

@@ -81,11 +81,11 @@ export function HeroSection() {
             </Link>
 
             <Link
-              href="/collections"
+              href="/shop"
               className="text-cream/80 text-sm tracking-widest uppercase font-mono border-b-2 border-accent-dark/40 pb-1 hover:text-cream hover:border-accent-dark transition-all duration-300"
 
             >
-              Explore Drops
+              Explore Shop
             </Link>
           </div>
 

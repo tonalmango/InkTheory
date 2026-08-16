@@ -51,7 +51,7 @@ export default function WishlistPage() {
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <Heart size={48} className="text-mist mb-4" />
             <p className="text-smoke font-mono text-sm tracking-widest mb-6">Saving for later? Respect.</p>
-            <Link href="/collections" className="btn-primary text-xs">EXPLORE COLLECTIONS</Link>
+            <Link href="/shop" className="btn-primary text-xs">EXPLORE SHOP</Link>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
