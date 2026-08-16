@@ -21,7 +21,7 @@ export default async function OrderDetailPage({
     include: {
       items: true,
       address: true,
-      printrove: true,
+      fulfillment: true,
       coupon: true,
     },
   })
@@ -151,16 +151,16 @@ export default async function OrderDetailPage({
             </div>
 
             {/* Tracking */}
-            {order.printrove?.trackingNumber && (
+            {order.fulfillment?.trackingNumber && (
               <div className="border border-ink/10 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Package size={14} className="text-accent" />
                   <h2 className="font-mono text-xs tracking-[3px] uppercase">Tracking</h2>
                 </div>
-                <p className="text-sm font-mono text-ink">{order.printrove.trackingNumber}</p>
-                {order.printrove.carrier && <p className="text-xs text-smoke mt-1">{order.printrove.carrier}</p>}
-                {order.printrove.trackingUrl && (
-                  <a href={order.printrove.trackingUrl} target="_blank" rel="noopener noreferrer"
+                <p className="text-sm font-mono text-ink">{order.fulfillment.trackingNumber}</p>
+                {order.fulfillment.carrier && <p className="text-xs text-smoke mt-1">{order.fulfillment.carrier}</p>}
+                {order.fulfillment.trackingUrl && (
+                  <a href={order.fulfillment.trackingUrl} target="_blank" rel="noopener noreferrer"
                     className="text-xs text-accent hover:text-accent-dark mt-2 block">
                     Track Package →
                   </a>

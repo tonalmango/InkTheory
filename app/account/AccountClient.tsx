@@ -101,12 +101,12 @@ export function AccountClient({ user, orders, addresses }: Props) {
                         <p className="text-sm font-medium mt-2">{formatPrice(order.total)}</p>
                       </div>
                     </div>
-                    {order.printrove?.trackingNumber && (
+                    {order.fulfillment?.trackingNumber && (
                       <div className="mt-3 pt-3 border-t border-ink/5">
                         <p className="text-xs text-smoke">
-                          Tracking: <span className="font-mono text-ink">{order.printrove.trackingNumber}</span>
-                          {order.printrove.trackingUrl && (
-                            <a href={order.printrove.trackingUrl} target="_blank" rel="noopener noreferrer"
+                          Tracking: <span className="font-mono text-ink">{order.fulfillment.trackingNumber}</span>
+                          {order.fulfillment.trackingUrl && (
+                            <a href={order.fulfillment.trackingUrl} target="_blank" rel="noopener noreferrer"
                               className="ml-2 text-accent hover:underline">Track →</a>
                           )}
                         </p>

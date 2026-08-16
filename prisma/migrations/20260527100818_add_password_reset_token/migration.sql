@@ -96,7 +96,6 @@ CREATE TABLE "Address" (
 -- CreateTable
 CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
-    "printroveId" TEXT,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -121,7 +120,7 @@ CREATE TABLE "Product" (
 CREATE TABLE "ProductVariant" (
     "id" TEXT NOT NULL,
     "productId" TEXT NOT NULL,
-    "printroveSkuId" TEXT,
+    "fulfillmentSku" TEXT,
     "size" TEXT NOT NULL,
     "color" TEXT NOT NULL,
     "colorHex" TEXT,
@@ -204,20 +203,19 @@ CREATE TABLE "OrderItem" (
 );
 
 -- CreateTable
-CREATE TABLE "PrintroveOrderTracking" (
+CREATE TABLE "FulfillmentOrder" (
     "id" TEXT NOT NULL,
     "orderId" TEXT NOT NULL,
-    "printroveOrderId" TEXT,
+    "providerOrderId" TEXT,
     "status" TEXT NOT NULL DEFAULT 'SUBMITTED',
     "trackingNumber" TEXT,
     "trackingUrl" TEXT,
     "carrier" TEXT,
     "rawResponse" JSONB,
-    "webhookPayloads" JSONB[] DEFAULT ARRAY[]::JSONB[],
     "submittedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "PrintroveOrderTracking_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "FulfillmentOrder_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -278,8 +276,6 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE INDEX "User_email_idx" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Product_printroveId_key" ON "Product"("printroveId");
-
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_slug_key" ON "Product"("slug");
 
@@ -329,10 +325,10 @@ CREATE INDEX "Order_paypalOrderId_idx" ON "Order"("paypalOrderId");
 CREATE INDEX "OrderItem_orderId_idx" ON "OrderItem"("orderId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "PrintroveOrderTracking_orderId_key" ON "PrintroveOrderTracking"("orderId");
+CREATE UNIQUE INDEX "FulfillmentOrder_orderId_key" ON "FulfillmentOrder"("orderId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "PrintroveOrderTracking_printroveOrderId_key" ON "PrintroveOrderTracking"("printroveOrderId");
+CREATE UNIQUE INDEX "FulfillmentOrder_providerOrderId_key" ON "FulfillmentOrder"("providerOrderId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Coupon_code_key" ON "Coupon"("code");
@@ -392,7 +388,7 @@ ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_productId_fkey" FOREIGN KEY ("
 ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_variantId_fkey" FOREIGN KEY ("variantId") REFERENCES "ProductVariant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PrintroveOrderTracking" ADD CONSTRAINT "PrintroveOrderTracking_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "FulfillmentOrder" ADD CONSTRAINT "FulfillmentOrder_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

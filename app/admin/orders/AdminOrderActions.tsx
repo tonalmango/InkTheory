@@ -8,18 +8,18 @@ import { useRouter } from 'next/navigation'
 interface Props {
   orderId: string
   currentStatus: string
-  hasPrintrove: boolean
+  hasFulfillment: boolean
 }
 
-export function AdminOrderActions({ orderId, currentStatus, hasPrintrove }: Props) {
+export function AdminOrderActions({ orderId, currentStatus, hasFulfillment }: Props) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const resubmitToPrintrove = async () => {
+  const submitForFulfillment = async () => {
     setLoading(true)
     try {
       await fetch(`/api/admin/orders/${orderId}/resubmit`, { method: 'POST' })
-      toast.success('Resubmitted to Printrove')
+      toast.success('Submitted for fulfillment')
       router.refresh()
     } catch {
       toast.error('Failed to resubmit')
@@ -47,11 +47,11 @@ export function AdminOrderActions({ orderId, currentStatus, hasPrintrove }: Prop
 
   return (
     <div className="flex items-center gap-1">
-      {!hasPrintrove && currentStatus !== 'CANCELLED' && (
+      {!hasFulfillment && currentStatus !== 'CANCELLED' && (
         <button
-          onClick={resubmitToPrintrove}
+          onClick={submitForFulfillment}
           disabled={loading}
-          title="Submit to Printrove"
+          title="Submit for fulfillment"
           className="p-1.5 text-smoke hover:text-ink transition-colors border border-ink/10 hover:border-ink/30"
         >
           <RefreshCw size={12} className={loading ? 'animate-spin' : ''} />

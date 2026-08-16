@@ -17,7 +17,7 @@ export default async function OrdersPage() {
     where: { userId: session.user.id },
     include: {
       items: { take: 3 },
-      printrove: { select: { status: true, trackingNumber: true, trackingUrl: true } },
+      fulfillment: { select: { status: true, trackingNumber: true, trackingUrl: true } },
     },
     orderBy: { createdAt: 'desc' },
   })
@@ -67,10 +67,10 @@ export default async function OrdersPage() {
                     <p className="text-xs text-smoke">{formatDate(order.createdAt)}</p>
 
                     {/* Tracking */}
-                    {order.printrove?.trackingNumber && (
+                    {order.fulfillment?.trackingNumber && (
                       <p className="text-xs text-smoke mt-1">
                         Tracking:{' '}
-                        <span className="font-mono text-ink">{order.printrove.trackingNumber}</span>
+                        <span className="font-mono text-ink">{order.fulfillment.trackingNumber}</span>
                       </p>
                     )}
 

@@ -12,7 +12,7 @@ export async function GET() {
     include: {
       items: true,
       address: true,
-      printrove: true,
+      fulfillment: true,
     },
     orderBy: { createdAt: 'desc' },
   })

@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="pt-20 md:pt-24">
       {/* Hero */}
       <div className="relative h-[50vh] min-h-[400px] overflow-hidden">
-        <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80"
+        <Image src="/about/inktheorypublicaboutabout-hero.png.png"
           alt="InkTheory" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-ink/60" />
         <div className="relative z-10 h-full flex items-end px-6 md:px-12 pb-12">

@@ -103,7 +103,6 @@ model Address {
 
 model Product {
   id              String   @id @default(cuid())
-  printroveId     String?  @unique
   name            String
   slug            String   @unique
   description     String   @db.Text
@@ -145,7 +144,7 @@ enum Category {
 model ProductVariant {
   id             String  @id @default(cuid())
   productId      String
-  printroveSkuId String?
+  fulfillmentSku String?
   size           String
   color          String
   colorHex       String?
@@ -223,7 +222,7 @@ model Order {
   address   Address                 @relation(fields: [addressId], references: [id])
   items     OrderItem[]
   coupon    Coupon?                 @relation(fields: [couponId], references: [id])
-  printrove PrintroveOrderTracking?
+  fulfillment FulfillmentOrder?
 
   @@index([userId])
   @@index([status])
@@ -266,16 +265,15 @@ model OrderItem {
   @@index([orderId])
 }
 
-model PrintroveOrderTracking {
+model FulfillmentOrder {
   id               String   @id @default(cuid())
   orderId          String   @unique
-  printroveOrderId String?  @unique
+  providerOrderId  String?  @unique
   status           String   @default("SUBMITTED")
   trackingNumber   String?
   trackingUrl      String?
   carrier          String?
   rawResponse      Json?
-  webhookPayloads  Json[]   @default([])
   submittedAt      DateTime @default(now())
   updatedAt        DateTime @updatedAt
 

@@ -7,7 +7,6 @@ import Image from 'next/image'
 import { formatPrice } from '@/lib/utils'
 import { ToggleProductButton } from './ToggleProductButton'
 import { categoryLabel } from '@/lib/utils'
-import { RefreshCw } from 'lucide-react'
 
 export const metadata = { title: 'Admin — Products' }
 
@@ -34,11 +33,6 @@ export default async function AdminProductsPage() {
             </div>
             <h1 className="display-heading text-3xl">Products ({products.length})</h1>
           </div>
-          <form action="/api/printrove/sync" method="POST">
-            <button type="submit" className="flex items-center gap-2 btn-primary text-xs py-2.5">
-              <RefreshCw size={13} /> Sync from Printrove
-            </button>
-          </form>
         </div>
 
         <div className="overflow-x-auto">
@@ -68,9 +62,6 @@ export default async function AdminProductsPage() {
                           className="text-xs font-medium hover:text-accent transition-colors line-clamp-2 max-w-[180px]">
                           {product.name}
                         </Link>
-                        {product.printroveId && (
-                          <p className="text-[10px] font-mono text-mist">PR: {product.printroveId.slice(0, 8)}</p>
-                        )}
                       </div>
                     </div>
                   </td>

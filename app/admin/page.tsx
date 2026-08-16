@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { formatPrice, formatDate, orderStatusColor, orderStatusLabel } from '@/lib/utils'
-import { Package, Users, ShoppingBag, TrendingUp, RefreshCw } from 'lucide-react'
+import { Package, Users, ShoppingBag, TrendingUp } from 'lucide-react'
 
 export const metadata = { title: 'Admin Dashboard' }
 
@@ -25,7 +25,7 @@ export default async function AdminPage() {
       include: {
         user: { select: { name: true, email: true } },
         items: { take: 1 },
-        printrove: { select: { status: true } },
+        fulfillment: { select: { status: true } },
       },
       orderBy: { createdAt: 'desc' },
       take: 10,
@@ -52,14 +52,6 @@ export default async function AdminPage() {
             <p className="section-label mb-2">Admin</p>
             <h1 className="display-heading text-3xl md:text-4xl">Dashboard</h1>
           </div>
-          <form action="/api/printrove/sync" method="POST">
-            <button
-              type="submit"
-              className="flex items-center gap-2 btn-secondary text-xs py-2.5"
-            >
-              <RefreshCw size={13} /> Sync Printrove
-            </button>
-          </form>
         </div>
 
         {/* Stats */}
@@ -128,7 +120,7 @@ export default async function AdminPage() {
                     </td>
                     <td className="py-3 pr-4">
                       <span className="text-xs font-mono text-smoke">
-                        {order.printrove?.status || 'Not submitted'}
+                        {order.fulfillment?.status || 'Not submitted'}
                       </span>
                     </td>
                   </tr>

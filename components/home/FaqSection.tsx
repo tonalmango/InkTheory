@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: 'Is every piece made after I order?',
-    a: 'Yes. InkTheory uses print-on-demand fulfillment through Printrove, so drops stay fresh and inventory does not sit around pretending to be rare.',
+    a: 'Yes. InkTheory uses print-on-demand fulfillment, so drops stay fresh and inventory does not sit around pretending to be rare.',
   },
   {
     q: 'Can I return or exchange a size?',

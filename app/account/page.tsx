@@ -11,7 +11,7 @@ export default async function AccountPage() {
   const [orders, addresses] = await Promise.all([
     prisma.order.findMany({
       where: { userId: session.user.id },
-      include: { items: true, printrove: true },
+      include: { items: true, fulfillment: true },
       orderBy: { createdAt: 'desc' },
       take: 5,
     }),

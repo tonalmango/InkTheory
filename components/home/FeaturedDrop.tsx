@@ -3,8 +3,18 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+
+const featuredDropImages = {
+  left: '/featured-drop/drop-live-poster.png',
+  right: '/featured-drop/dont-miss-size-poster.png',
+  fallback: '/featured-drop/drop-live-combined.png',
+}
 
 export function FeaturedDrop() {
+  const [leftImage, setLeftImage] = useState(featuredDropImages.left)
+  const [rightImage, setRightImage] = useState(featuredDropImages.right)
+
   return (
     <section className="bg-cream py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,11 +27,13 @@ export function FeaturedDrop() {
             viewport={{ once: true }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=85"
+              src={leftImage}
               alt="InkTheory featured streetwear drop"
               fill
               className="object-cover transition-transform duration-700 hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
+              unoptimized
+              onError={() => setLeftImage(featuredDropImages.fallback)}
             />
             <div
               className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
@@ -32,7 +44,7 @@ export function FeaturedDrop() {
 
 
             <div className="absolute left-6 bottom-6 right-6 text-cream">
-              <p className="font-mono text-xs tracking-widest uppercase text-accent-dark mb-3 font-semibold">Limited Drops</p>
+              <p className="font-mono text-xs tracking-widest uppercase text-accent mb-3 font-semibold drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">Limited Drops</p>
               <p className="font-display text-5xl md:text-6xl leading-tight font-bold">DROP<br />LIVE</p>
             </div>
 
@@ -46,6 +58,16 @@ export function FeaturedDrop() {
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
           >
+            <Image
+              src={rightImage}
+              alt="InkTheory limited drops poster"
+              fill
+              className="object-cover object-right opacity-45"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              unoptimized
+              onError={() => setRightImage(featuredDropImages.fallback)}
+            />
+            <div className="absolute inset-0 bg-ink/72" />
             <div
               className="absolute inset-0 opacity-5"
               style={{
@@ -71,7 +93,7 @@ export function FeaturedDrop() {
             </div>
 
             <div className="relative mt-12 flex flex-col sm:flex-row gap-4">
-              <Link href="/shop?featured=true" className="inline-flex items-center justify-center gap-2 bg-accent-dark text-cream px-8 py-4 font-mono tracking-widest uppercase text-sm font-semibold hover:bg-charcoal transition-colors duration-300">
+              <Link href="/shop?featured=true" className="inline-flex items-center justify-center gap-2 bg-accent text-ink px-8 py-4 font-mono tracking-widest uppercase text-sm font-semibold hover:bg-accent-light transition-colors duration-300">
 
                 Shop Drops <ArrowRight size={14} />
               </Link>

@@ -22,7 +22,7 @@ export type DiscountType = 'PERCENTAGE' | 'FIXED'
 export interface ProductVariant {
   id: string
   productId: string
-  printroveSkuId?: string | null
+  fulfillmentSku?: string | null
   size: string
   color: string
   colorHex?: string | null
@@ -44,7 +44,6 @@ export interface SizeChartEntry {
 
 export interface Product {
   id: string
-  printroveId?: string | null
   name: string
   slug: string
   description: string
@@ -125,15 +124,15 @@ export interface Order {
   total: number
   items: OrderItem[]
   address: Address
-  printrove?: PrintroveTracking | null
+  fulfillment?: FulfillmentTracking | null
   createdAt: string
   updatedAt: string
 }
 
-export interface PrintroveTracking {
+export interface FulfillmentTracking {
   id: string
   orderId: string
-  printroveOrderId?: string | null
+  providerOrderId?: string | null
   status: string
   trackingNumber?: string | null
   trackingUrl?: string | null
@@ -164,52 +163,6 @@ export interface Review {
   createdAt: string
 }
 
-// Printrove API types
-export interface PrintroveProduct {
-  id: string
-  name: string
-  description: string
-  category: string
-  variants: PrintroveVariant[]
-  images: string[]
-  mockupImages: string[]
-  basePrice: number
-}
-
-export interface PrintroveVariant {
-  id: string
-  size: string
-  color: string
-  colorHex: string
-  price: number
-  stock: number
-}
-
-export interface PrintroveOrderPayload {
-  reference_number: string
-  retail_price: number
-  customer: {
-    name: string
-    email?: string
-    number: number | string
-    address1: string
-    address2: string
-    address3?: string
-    pincode?: number | string
-    state?: string
-    city: string
-    country: string
-  }
-  order_products: {
-    product_id?: number
-    variant_id?: number
-    quantity: number
-    is_plain?: boolean
-  }[]
-  courier_id?: number
-  cod: boolean
-  invoice_url?: string
-}
 
 // Cart store types
 export interface LocalCartItem {

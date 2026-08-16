@@ -16,7 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     include: {
       items: true,
       address: true,
-      printrove: true,
+      fulfillment: true,
       coupon: { select: { code: true, type: true, value: true } },
       user: { select: { name: true, email: true } },
     },
@@ -49,17 +49,6 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       where: { id: params.id },
       data: { status: 'CANCELLED' },
     })
-
-    // Try to cancel in Printrove if submitted
-    if (order.id) {
-      const tracking = await prisma.printroveOrderTracking.findUnique({
-        where: { orderId: order.id },
-      })
-      if (tracking?.printroveOrderId) {
-        const { printroveClient } = await import('@/lib/printrove/client')
-        printroveClient.cancelOrder(tracking.printroveOrderId, reason || 'Customer request').catch(console.error)
-      }
-    }
 
     return NextResponse.json({ order: updated })
   }
