@@ -6,10 +6,10 @@ import { ArrowUpRight } from 'lucide-react'
 import { STOREFRONT_CATEGORIES } from '@/lib/storefrontCategories'
 
 const categoryImages = [
-  'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=1000&q=85',
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000&q=85',
-  'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1000&q=85',
-  'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=1000&q=85',
+  '/categories/trending.png',
+  '/categories/pop-culture.png',
+  '/categories/together-different.png',
+  '/categories/comic-mode.png',
 ]
 
 export function CategoryGrid() {

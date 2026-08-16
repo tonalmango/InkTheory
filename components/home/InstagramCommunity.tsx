@@ -2,7 +2,15 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+
+const communityImages = [
+  '/instagram-community/community-1.png',
+  '/instagram-community/community-2.png',
+  '/instagram-community/community-3.png',
+  '/instagram-community/community-4.png',
+]
 
 export function InstagramCommunity() {
   return (
@@ -47,11 +55,19 @@ export function InstagramCommunity() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {Array.from({ length: 4 }).map((_, i) => (
+          {communityImages.map((imageSrc, i) => (
             <div
               key={i}
-              className="bg-ink border border-ink/10 aspect-square rounded-2xl overflow-hidden"
-            />
+              className="relative bg-ink border border-ink/10 aspect-square rounded-2xl overflow-hidden"
+            >
+              <Image
+                src={imageSrc}
+                alt={`Instagram community post ${i + 1}`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
           ))}
         </div>
       </div>
